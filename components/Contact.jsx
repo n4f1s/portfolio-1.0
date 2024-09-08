@@ -6,6 +6,7 @@ import { Wrapper } from '@/hoc';
 import { slideIn } from '@/utils/motion';
 import { styles } from '@/app/styles';
 import { EarthCanvas } from './canvas';
+import ModelWithAnimation from './Models/ModelWithAnimation'
 
 const Contact = () => {
   const formRef = useRef();
@@ -111,6 +112,7 @@ const Contact = () => {
           className='xl:flex-1 xl:h-auto md:h-[550px] h-[350px]'
         >
           <EarthCanvas />
+          {/* <ModelWithAnimation /> */}
         </motion.div>
       </div>
     </Wrapper>
