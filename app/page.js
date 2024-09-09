@@ -1,4 +1,5 @@
 import { About, Contact, Experience, Hero, StarsCanvas, Tech, Works } from "@/components";
+// import Hero2 from "@/components/Hero2";
 import ModelViewer from "@/components/Models/ModelWithAnimation";
 
 
@@ -9,6 +10,7 @@ export default function Home() {
         <div className="bg-heroPattern bg-cover bg-no-repeat bg-center">
           <Hero />
         </div>
+        {/* <Hero2 /> */}
         <About />
         <Experience />
         <Tech />

@@ -11,14 +11,6 @@ import { styles } from '@/app/styles'
 const Tech = () => {
   const technologies = [
     {
-      name: "HTML 5",
-      icon: "/tech/html.png",
-    },
-    {
-      name: "CSS 3",
-      icon: "/tech/css.png",
-    },
-    {
       name: "JavaScript",
       icon: "/tech/javascript.png",
     },
@@ -43,40 +35,12 @@ const Tech = () => {
       icon: "/tech/wordpress.png",
     },
     {
-      name: "Redux Toolkit",
-      icon: "/tech/redux.png",
-    },
-    // {
-    //   name: "Tailwind CSS",
-    //   icon: "/tech/tailwind.png",
-    // },
-    {
-      name: "Framer motion",
-      icon: "/tech/framermotion.png",
-    },
-    // {
-    //   name: "Node JS",
-    //   icon: "/tech/nodejs.png",
-    // },
-    {
-      name: "MongoDB",
+      name: "Mongoose",
       icon: "/tech/mongodb.png",
     },
     {
       name: "Three JS",
       icon: "/tech/threejs.svg",
-    },
-    {
-      name: "git",
-      icon: "/tech/git.png",
-    },
-    // {
-    //   name: "Figma",
-    //   icon: "/tech/figma.png",
-    // },
-    {
-      name: "Firebase",
-      icon: "/tech/firebase.png",
     },
   ];
   return (

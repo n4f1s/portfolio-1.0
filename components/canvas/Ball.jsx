@@ -1,6 +1,6 @@
 'use client'
-import React, { Suspense } from "react";
-import { Canvas } from "@react-three/fiber";
+import React, { Suspense, useEffect, useRef } from "react";
+import { Canvas, useThree } from "@react-three/fiber";
 import {
   Decal,
   Float,
@@ -38,8 +38,22 @@ const Ball = ({ imgUrl }) => {
   );
 };
 
-const BallCanvas = ({ icon }) => {
+// Component to handle WebGL cleanup
+const WebGLCleanup = () => {
+  const { gl } = useThree(); // Access the WebGLRenderer instance
 
+  useEffect(() => {
+    return () => {
+      if (gl) {
+        gl.dispose(); // Dispose of WebGL context on unmount
+      }
+    };
+  }, [gl]);
+
+  return null; // This component does not render anything
+};
+
+const BallCanvas = ({ icon }) => {
   return (
     <Canvas
       frameloop='demand'
@@ -48,6 +62,7 @@ const BallCanvas = ({ icon }) => {
     >
       <Suspense fallback={<CanvasLoader />}>
         <OrbitControls enableZoom={false} />
+        <WebGLCleanup />
         <Ball imgUrl={icon} />
       </Suspense>
 
