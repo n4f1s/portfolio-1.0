@@ -1,7 +1,7 @@
 'use client'
 import { motion } from "framer-motion"
 import { styles } from "@/app/styles"
-import { fadeIn, staggerContainer, textVariant } from "@/utils/motion"
+import { fadeIn, textVariant } from "@/utils/motion"
 import { Tilt } from "react-tilt"
 import { Wrapper } from "@/hoc"
 
