@@ -1,91 +1,142 @@
 'use client'
 import { motion } from "framer-motion"
 import { styles } from "@/app/styles"
-import { fadeIn, textVariant } from "@/utils/motion"
+import { fadeIn, staggerContainer, textVariant } from "@/utils/motion"
 import { Tilt } from "react-tilt"
-import { Wrapper } from "@/hoc"
+import dynamic from "next/dynamic"
+import Image from "next/image"
+import { useEffect, useState } from "react"
+
+const ModelViewer = dynamic(() => import('@/components/Models/ModelWithAnimation'), {
+  ssr: false
+});
 
 
-const ServiceCard = ({ index, title, icon }) => {
+
+
+const animations = ["chr205_br01_rd", "chr205_bs01_rd", "chr205_fe01_rd"]
+
+const ServiceCard = ({ title, icon, color1, color2, id, onHover }) => {
   return (
-    <Tilt className="">
-      <motion.div
-        variants={fadeIn("right", "spring", 0.5 * index, 0.75)}
-        className="w-full green-pink-gradient p-[1px] rounded-[20px] shadow-card"
-      >
-        <div
-          options={{
-            max: 45,
-            scale: 1,
-            speed: 450
-          }}
-          className="bg-tertiary rounded-[20px] py-5 px-12 min-h[280px] flex justify-evenly 
-          items-center flex-col"
-        >
-          <img
+    <motion.div
+      className="relative z-0 p-8 w-[250px] group"
+      variants={fadeIn("right", "spring", 0.5 * id, 0.75)}
+      onMouseEnter={() => onHover(id)} // Trigger animation change
+    >
+      {/* Cutt corner */}
+      <div className={`absolute size-16 rounded-xl ${color1} top-1.5 right-1.5 -z-10 
+      blur-lg opacity-0 group-hover:opacity-100 transition duration-300`} />
+
+      <div className={`absolute size-16 rounded-xl ${color1} top-1.5 right-1.5 -z-10
+      ${color2} transition duration-300`} />
+
+      {/* Card background */}
+      <div className="absolute inset-0 bg-tertiary -z-10 rounded-2xl 
+      [mask-image:linear-gradient(225deg,transparent,transparent_30px,black_30px)]" />
+
+      <div className="flex justify-center -mt-20 ">
+        <div className="inline-flex relative">
+          {/* Image shadow */}
+          <div className="absolute h-4 group-hover:h-3 w-full top-[calc(100%+16px)] bg-black
+          group-hover:bg-black/60 transition duration-300
+          rounded-[100%] [mask-image:radial-gradient(closest-side,black,transparent)]" />
+          <Image
             src={icon}
-            alt={title}
-            className="size-16 object-contain"
+            alt="Pill"
+            width={100}
+            height={100}
+            className="group-hover:-translate-y-6 transition duration-300"
           />
-          <h3 className="text-white text-[20px] font-bold text-center">
-            {title}
-          </h3>
         </div>
-      </motion.div>
-    </Tilt>
+      </div>
+
+      <h3 className="text-white text-base font-bold text-center mt-12">
+        {title}
+      </h3>
+    </motion.div>
   )
 }
 
 const About = () => {
   const Services = [
     {
+      id: 1,
       title: "Web Developer",
-      icon: "/web.png",
+      icon: "/pill.png",
+      color1: "bg-fuchsia-600",
+      color2: "group-hover:bg-fuchsia-500",
     },
     {
+      id: 2,
       title: "React Native Developer",
-      icon: "/mobile.png",
+      icon: "/icosahedron.png",
+      color1: "bg-lime-600",
+      color2: "group-hover:bg-lime-500",
     },
     {
+      id: 3,
       title: "Backend Developer",
-      icon: "/backend.png",
-    },
-    {
-      title: "Content Creator",
-      icon: "/creator.png",
+      icon: "/cube.png",
+      color1: "bg-violet-600",
+      color2: "group-hover:bg-violet-500",
     },
   ];
 
+  const [animation, setAnimation] = useState("chr205_bn01_rd")
+
+  const handleHover = (id) => {
+    setAnimation(animations[id - 1]); // Change animation based on hovered card
+  }
 
   return (
     <>
-      <Wrapper idName="about">
-        <motion.div variants={textVariant()}>
-          <p className={styles.sectionSubText}>
-            Introduction
-          </p>
-          <h2 className={styles.sectionHeadText}>
-            Overview.
-          </h2>
-        </motion.div>
+      <motion.div
+        id="about"
+        className="sm:px-16 px-6 sm:py-16 py-10 w-full lg:h-screen overflow-hidden 
+        max-w-7xl mx-auto relative z-0"
+        variants={staggerContainer()}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: false, amount: 0.40 }}
+      >
+        <div className="w-full lg:h-[25vh]">
+          <motion.div variants={textVariant()}>
+            <p className={styles.sectionSubText}>
+              Introduction
+            </p>
+            <h2 className={styles.sectionHeadText}>
+              Overview.
+            </h2>
+          </motion.div>
 
-        <motion.p
-          variants={fadeIn("", "", 0.1, 1)}
-          className="mt-4 text-secondary text-[17px] max-w-3xl leading-[30px]"
-        >
-          I'm a skilled software developer with experience in TypeScript and
-          JavaScript, and expertise in frameworks like React, Node.js, and
-          Three.js. I'm a quick learner and collaborate closely with clients to
-          create efficient, scalable, and user-friendly solutions that solve
-          real-world problems. Let's work together to bring your ideas to life!
-        </motion.p>
-
-        <div className="mt-20 flex flex-wrap gap-10">
-          {Services.map((service, index) => (
-            <ServiceCard key={service.title} index={index} {...service} />
-          ))}
+          <motion.p
+            variants={fadeIn("", "", 0.1, 1)}
+            className="mt-4 text-secondary text-[17px] max-w-3xl leading-[30px]"
+          >
+            I'm a skilled software developer with experience in TypeScript and
+            JavaScript, and expertise in frameworks like React, Node.js, and
+            Three.js. I'm a quick learner and collaborate closely with clients to
+            create efficient, scalable, and user-friendly solutions that solve
+            real-world problems. Let's work together to bring your ideas to life!
+          </motion.p>
         </div>
-      </Wrapper>
+
+        <div className="mt-20 lg:mt-10 flex flex-col md:flex-row w-full lg:h-[75vh] relative">
+          <div className="flex flex-col items-center gap-10 mx-10 md:mx-0 md:ml-4 space-y-8">
+            {Services.map((service) => (
+              <ServiceCard key={service.title} {...service} onHover={handleHover} />
+            ))}
+          </div>
+
+          <div className="ml-10 w-full h-[50vh] md:h-[75vh] mt-10 md:-mt-10">
+            <ModelViewer animation={animation} />
+          </div>
+
+          <div className="absolute top-10 left-[300px] font-semibold text-5xl font-serif hidden md:block">
+              Interact with the cards
+          </div>
+        </div>
+      </motion.div>
     </>
   )
 }

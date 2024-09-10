@@ -2,29 +2,12 @@
 import React, { useEffect, useState } from 'react'
 import { styles } from '@/app/styles'
 import Link from 'next/link'
-import { MotionConfig, motion, AnimatePresence } from "framer-motion";
+import { MotionConfig, motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
 import { NavMenuButtonVariants } from '@/utils/motion';
 
 const Navbar = () => {
   const [active, setActive] = useState("");
   const [toggle, setToggle] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollTop = window.scrollY;
-      if (scrollTop > 100) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
 
   const navLinks = [
     {
@@ -41,9 +24,35 @@ const Navbar = () => {
     },
   ];
 
+  // Show navbar when scrolling up hide when scrolling down
+  const { scrollY } = useScroll();
+
+  const [navBg, setNavBg] = useState(false);
+  const [hidden, setHidden] = useState(false);
+
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    const previous = scrollY.getPrevious();
+    if (latest > previous && latest > 550) {
+      setHidden(true);
+      setNavBg(true);
+    } else if (latest < 550) {
+      setNavBg(false);
+    }
+    else {
+      setHidden(false);
+    }
+  })
+
   return (
-    <nav
-      className={`${styles.paddingX} w-full flex items-center py-5 fixed top-0 z-50 bg-transparent`}
+    <motion.nav
+      className={`${styles.paddingX} w-full flex items-center py-2 fixed top-0 z-50 
+      ${!navBg ? "bg-transparent" : "bg-slate-800/50 backdrop-blur-sm"}`}
+      variants={{
+        visible: { y: 0 },
+        hidden: { y: "-100%" },
+      }}
+      animate={hidden ? "hidden" : "visible"}
+      transition={{ duration: 0.5, ease: "easeInOut" }}
     >
       <div className='w-full flex justify-between items-center max-w-7xl mx-auto'>
         <Link
@@ -68,12 +77,17 @@ const Navbar = () => {
           {navLinks.map((link) => (
             <li
               key={link.id}
-              className={`${active === link.title ? "text-white" : "text-secondary"} 
+              className={`${active === link.id ? "text-white" : "text-secondary"} 
               text-[18px] font-medium cursor-pointer`}
             >
-              <a href={`#${link.id}`}>
+              <Link
+                href={`#${link.id}`}
+                onClick={() => {
+                  setActive(link.id);
+                }}
+              >
                 {link.title}
-              </a>
+              </Link>
             </li>
           ))}
         </ul>
@@ -83,7 +97,7 @@ const Navbar = () => {
           {/* Mobile menu button */}
           <MotionConfig
             transition={{
-              duration: 0.3,
+              duration: 0.5,
               ease: "easeInOut",
             }}
           >
@@ -141,7 +155,7 @@ const Navbar = () => {
 
         </div>
       </div>
-    </nav>
+    </motion.nav>
   )
 }
 

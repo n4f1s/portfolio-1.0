@@ -5,8 +5,7 @@ import emailjs from '@emailjs/browser'
 import { Wrapper } from '@/hoc';
 import { slideIn } from '@/utils/motion';
 import { styles } from '@/app/styles';
-import { EarthCanvas } from './canvas';
-import ModelWithAnimation from './Models/ModelWithAnimation'
+import EarthCanvas from './canvas/Earth';
 
 const Contact = () => {
   const formRef = useRef();
@@ -22,7 +21,7 @@ const Contact = () => {
   const handleSubmit = (e) => { }
 
   return (
-    <Wrapper>
+    <Wrapper idName="contact">
       <div className='xl:mt-12 xl:flex-row flex-col-reverse flex gap-10 overflow-hidden'>
         <motion.div
           variants={slideIn('left', 'tween', 0.2, 1)}
@@ -112,7 +111,6 @@ const Contact = () => {
           className='xl:flex-1 xl:h-auto md:h-[550px] h-[350px]'
         >
           <EarthCanvas />
-          {/* <ModelWithAnimation /> */}
         </motion.div>
       </div>
     </Wrapper>

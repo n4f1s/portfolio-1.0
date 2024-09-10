@@ -1,11 +1,14 @@
 'use client'
 import { Vector3 } from 'three';
-import { useRef, useState, useEffect } from 'react';
+import { useRef, useState, useEffect, Suspense } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import { useGLTF, SpotLight, useDepthBuffer, OrbitControls } from '@react-three/drei';
+import { useGLTF, SpotLight, useDepthBuffer, OrbitControls, Preload } from '@react-three/drei';
 import { motion } from 'framer-motion';
 import { Wrapper } from '@/hoc';
 import { styles } from '@/app/styles';
+import CanvasLoader from './CanvasLoader';
+
+
 
 export default function Home2() {
   const sectionRef = useRef();
@@ -49,15 +52,21 @@ export default function Home2() {
 
       {/* Only render the Canvas when the section is in view */}
       {isVisible && (
-        <Canvas shadows dpr={[1, 2]} camera={{ position: [-2, 2, 6], fov: 50, near: 1, far: 20 }}>
-          <OrbitControls
-            // autoRotate
-            enableZoom={false}
-            maxPolarAngle={Math.PI / 2}
-            minPolarAngle={Math.PI / 2}
-          />
+        <Canvas
+          shadows
+          dpr={[1, 2]}
+          camera={{ position: [-2, 2, 6], fov: 50, near: 1, far: 20 }}
+        >
+          <Suspense fallback={<CanvasLoader />}>
+            <OrbitControls
+              enableZoom={false}
+              maxPolarAngle={Math.PI / 2}
+              minPolarAngle={Math.PI / 2}
+            />
+            <Scene />
+          </Suspense>
 
-          <Scene />
+          <Preload all />
         </Canvas>
       )}
       <div className='absolute xs:bottom-10 bottom-32 w-full flex justify-center items-center'>

@@ -4,7 +4,7 @@ import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls, useGLTF } from '@react-three/drei';
 import * as THREE from 'three';
 
-const ModelWithAnimation = () => {
+const ModelWithAnimation = ({ animationName }) => {
     const { scene, animations } = useGLTF('/models/model1.glb'); // Your GLTF/GLB file path
     const mixer = useRef();
     const group = useRef();
@@ -21,7 +21,7 @@ const ModelWithAnimation = () => {
 
 
             //   Optionally, you can play a specific animation
-            const clip = animations.find(clip => clip.name === "chr205_br01_rd");
+            const clip = animations.find(clip => clip.name === animationName);
             if (clip) {
                 const action = mixer.current.clipAction(clip);
                 action.play(); // Play the selected animation
@@ -30,7 +30,7 @@ const ModelWithAnimation = () => {
                 console.warn(`Animation "AnimationName" not found.`);
             }
         }
-    }, [animations, scene]);
+    }, [animations, scene, animationName]);
 
     useFrame((state, delta) => {
         mixer.current?.update(delta); // Update the animation on each frame
@@ -42,15 +42,15 @@ const ModelWithAnimation = () => {
         </group>
     );
 };
-
-const ModelViewer = () => {
+// chr205_br01_rd
+const ModelViewer = ({ animation }) => {
     return (
-        <Canvas camera={{ position: [-1, 3, -4], fov: 70 }}>
+        <Canvas camera={{ position: [-1, 3, -4], fov: 60 }}>
             <ambientLight intensity={1} />
             {/* <spotLight position={[20, 20, 20]} angle={0.40} penumbra={1} />
             <pointLight position={[-20, -20, -20]} /> */}
 
-            <ModelWithAnimation />
+            <ModelWithAnimation animationName={animation} />
 
             <OrbitControls
                 enableZoom={false} // Disable zoom

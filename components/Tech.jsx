@@ -1,12 +1,15 @@
 'use client'
 import { Wrapper } from '@/hoc'
 import React from 'react'
-import { BallCanvas } from './canvas'
+
 import { motion } from 'framer-motion'
 import { textVariant } from '@/utils/motion'
 import { styles } from '@/app/styles'
+import dynamic from 'next/dynamic'
 
-
+// const BallCanvas = dynamic(() => import('./canvas/Ball'), {
+//   ssr: false
+// });
 
 const Tech = () => {
   const technologies = [
@@ -43,6 +46,7 @@ const Tech = () => {
       icon: "/tech/threejs.svg",
     },
   ];
+  
   return (
     <Wrapper idName="Tech">
       <motion.div variants={textVariant()} >
@@ -54,7 +58,7 @@ const Tech = () => {
         </h2>
       </motion.div>
 
-      <div className='flex flex-row flex-wrap justify-center gap-10'>
+      {/* <div className='flex flex-row flex-wrap justify-center gap-10'>
         {technologies.map((technology) => (
           <div className="size-28" key={technology.name}>
             <BallCanvas icon={technology.icon} />
@@ -63,7 +67,7 @@ const Tech = () => {
             </p>
           </div>
         ))}
-      </div>
+      </div> */}
     </Wrapper>
   )
 }
