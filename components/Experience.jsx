@@ -74,7 +74,7 @@ const Experience = () => {
     <VerticalTimelineElement
       visible={inView}
       className="vertical-timeline-element--work z-20"
-      contentStyle={{ background: '#1d1836', color: '#fff' }}
+      contentStyle={{ background: '#151030', color: '#fff' }}
       contentArrowStyle={{ borderRight: '7px solid #232631' }}
       date={experience.date}
       iconStyle={{ background: experience.iconBg }}

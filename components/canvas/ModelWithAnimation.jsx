@@ -1,5 +1,5 @@
 'use client';
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls, useGLTF } from '@react-three/drei';
 import * as THREE from 'three';
@@ -42,26 +42,44 @@ const ModelWithAnimation = ({ animationName }) => {
         </group>
     );
 };
-// chr205_br01_rd
+
 const ModelViewer = ({ animation }) => {
+    const [isDesktop, setIsDesktop] = useState(window.innerWidth > 760);
+
+    const handleResize = () => {
+        if (window.innerWidth > 760) {
+            setIsDesktop(true);  // Enable OrbitControls for desktop
+        } else {
+            setIsDesktop(false); // Disable OrbitControls for mobile
+        }
+    };
+
+    useEffect(() => {
+        window.addEventListener("resize", handleResize);
+        handleResize(); // Call on initial render to set the correct state
+
+        return () => {
+            window.removeEventListener("resize", handleResize);
+        };
+    }, []);
+
     return (
         <Canvas camera={{ position: [-1, 3, -4], fov: 60 }}>
             <ambientLight intensity={1} />
-            {/* <spotLight position={[20, 20, 20]} angle={0.40} penumbra={1} />
-            <pointLight position={[-20, -20, -20]} /> */}
+
 
             <ModelWithAnimation animationName={animation} />
-
-            <OrbitControls
-                enableZoom={false} // Disable zoom
-                enablePan={true} // Enable panning if needed
-                enableRotate={true} // Enable rotation
-                minPolarAngle={Math.PI / 10} // Minimum vertical angle (e.g., 45 degrees)
-                maxPolarAngle={Math.PI / 2} // Maximum vertical angle (e.g., 90 degrees)
-                // minAzimuthAngle={true}
-                // maxAzimuthAngle={true}
-                zoomSpeed={0} // Set zoom speed to 0 to ensure no zoom effect
-            />
+            
+            {/* Conditionally render OrbitControls based on screen size */}
+            {isDesktop && (
+                <OrbitControls
+                    enableZoom={false}
+                    enablePan={true}
+                    minPolarAngle={Math.PI / 10}
+                    maxPolarAngle={Math.PI / 2}
+                    zoomSpeed={0}
+                />
+            )}
         </Canvas>
     );
 };

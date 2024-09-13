@@ -2,12 +2,11 @@
 import { motion } from "framer-motion"
 import { styles } from "@/app/styles"
 import { fadeIn, staggerContainer, textVariant } from "@/utils/motion"
-import { Tilt } from "react-tilt"
 import dynamic from "next/dynamic"
 import Image from "next/image"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 
-const ModelViewer = dynamic(() => import('@/components/Models/ModelWithAnimation'), {
+const ModelViewer = dynamic(() => import('@/components/canvas/ModelWithAnimation'), {
   ssr: false
 });
 
@@ -92,7 +91,7 @@ const About = () => {
     <>
       <motion.div
         id="about"
-        className="sm:px-16 px-6 sm:py-16 py-10 w-full lg:h-screen overflow-hidden 
+        className="sm:px-16 px-6 sm:py-16 pt-10 w-full lg:h-screen overflow-hidden 
         max-w-7xl mx-auto relative z-0"
         variants={staggerContainer()}
         initial="hidden"
@@ -113,11 +112,11 @@ const About = () => {
             variants={fadeIn("", "", 0.1, 1)}
             className="mt-4 text-secondary text-[17px] max-w-3xl leading-[30px]"
           >
-            I'm a skilled software developer with experience in TypeScript and
-            JavaScript, and expertise in frameworks like React, Node.js, and
-            Three.js. I'm a quick learner and collaborate closely with clients to
-            create efficient, scalable, and user-friendly solutions that solve
-            real-world problems. Let's work together to bring your ideas to life!
+            As a skilled software developer, I bring extensive experience in TypeScript and JavaScript, 
+            with a strong focus on modern frameworks such as React, Next.js, and Three.js. Known for 
+            being a quick learner, I collaborate closely with clients to deliver efficient, scalable, 
+            and user-friendly solutions tailored to real-world challenges. Let's work together to turn
+             your ideas into impactful results!
           </motion.p>
         </div>
 
@@ -128,7 +127,7 @@ const About = () => {
             ))}
           </div>
 
-          <div className="ml-10 w-full h-[50vh] md:h-[75vh] mt-10 md:-mt-10">
+          <div className="md:ml-10 w-full h-[50vh] md:h-[75vh] mt-10 md:-mt-10">
             <ModelViewer animation={animation} />
           </div>
 

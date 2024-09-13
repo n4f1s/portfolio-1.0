@@ -38,7 +38,7 @@ export default function Home2() {
     <div ref={sectionRef} className='h-full w-full'>
       <div className='absolute inset-0'>
         <Wrapper>
-          <div className='mt-[120px]'>
+          <div className='mt-[80px] xs:mt-[120px]'>
             <h1 className={`${styles.heroHeadText} text-white`}>
               Hi, I am <span className='text-[#915eff]'>Nafis</span>
             </h1>
@@ -69,7 +69,7 @@ export default function Home2() {
           <Preload all />
         </Canvas>
       )}
-      <div className='absolute xs:bottom-10 bottom-32 w-full flex justify-center items-center'>
+      <div className='absolute bottom-4 w-full flex justify-center items-center'>
         <a
           href='#about'
           onClick={() => {
@@ -93,6 +93,12 @@ export default function Home2() {
             />
           </div>
         </a>
+      </div>
+
+      <div className='absolute bottom-24 z-40 text-[11px] sm:text-lg font-semibold'>
+        <div className='sm:px-16 px-6'>
+          Crafted with Next.js, Three.js, Tailwind CSS, and Framer Motion.
+        </div>
       </div>
     </div>
   );

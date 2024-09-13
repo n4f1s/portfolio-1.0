@@ -10,7 +10,7 @@ const Stars = (props) => {
   const ref = useRef();
 
 // Memoize the sphere positions to avoid recalculating on every render
-  const sphere = useMemo(() => random.inSphere(new Float32Array(5000), { radius: 1.2 }), []);
+  const sphere = useMemo(() => random.inSphere(new Float32Array(2000), { radius: 1.3 }), []);
   
   //For the star dust animation
   useFrame((state, delta) => {
@@ -23,7 +23,7 @@ const Stars = (props) => {
         <PointMaterial
           transparent
           color="#f272c8"
-          size={0.002}
+          size={0.004}
           sizeAttenuation={true}
           depthWrite={false}
         />

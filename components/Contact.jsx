@@ -5,7 +5,15 @@ import emailjs from '@emailjs/browser'
 import { Wrapper } from '@/hoc';
 import { slideIn } from '@/utils/motion';
 import { styles } from '@/app/styles';
-import EarthCanvas from './canvas/Earth';
+import dynamic from 'next/dynamic';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+const EarthCanvas = dynamic(() => import('./canvas/Earth'), {
+  ssr: false
+});
+
+
 
 const Contact = () => {
   const formRef = useRef();
@@ -16,9 +24,68 @@ const Contact = () => {
   });
   const [loading, setLoading] = useState(false);
 
-  const handleChange = (e) => { }
+  const handleChange = (e) => {
+    const { name, value } = e.target;
 
-  const handleSubmit = (e) => { }
+    setForm({ ...form, [name]: value })
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    // EmailJS does not automatically verify whether an email address is valid or fake before sending.
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(form.email)) {
+      toast.error("Please enter a valid email address.");
+      return;
+    }
+    // End
+    const email = form.email;
+
+    // Check if the user has sent more than 2 messages
+    const emailData = JSON.parse(localStorage.getItem('emailSubmissions')) || {};
+
+    if (emailData[email] && emailData[email] >= 2) {
+      toast.error("You have already sent 2 messages. Please wait before sending more.");
+      return;
+    }
+
+    setLoading(true);
+
+    emailjs.send(
+      'service_v0y38tp',
+      'template_w7hda1r',
+      {
+        form_name: form.name,
+        to_name: 'Nafis',
+        from_email: form.email,
+        to_email: 'musfiqurok@gmail.com',
+        message: form.message,
+      },
+      'Fscz_hh1fT1KIq7Cv'
+    )
+      .then(() => {
+        setLoading(false);
+
+        // Update the submission count
+        emailData[email] = (emailData[email] || 0) + 1;
+        localStorage.setItem('emailSubmissions', JSON.stringify(emailData));
+
+        toast.success("Thank you. I will get back to you as soon as possible.");
+
+        setForm({
+          name: '',
+          email: '',
+          message: '',
+        })
+      }, (error) => {
+        setLoading(false)
+
+        console.log(error);
+        toast.error("Something went wrong.")
+        // alert('Something went wrong.')
+      })
+  }
 
   return (
     <Wrapper idName="contact">
@@ -68,6 +135,7 @@ const Contact = () => {
                 type="email"
                 name="email"
                 value={form.email}
+                required 
                 onChange={handleChange}
                 placeholder="What's your email?"
                 className="bg-tertiary py-4 px-6 placeholder:text-secondary 
@@ -89,6 +157,7 @@ const Contact = () => {
                 rows="7"
                 name="message"
                 value={form.message}
+                required
                 onChange={handleChange}
                 placeholder="Write your message..."
                 className="bg-tertiary py-4 px-6 placeholder:text-secondary 
@@ -103,6 +172,7 @@ const Contact = () => {
             >
               {loading ? 'Sending...' : 'Send'}
             </button>
+            <ToastContainer />
           </form>
         </motion.div>
 
