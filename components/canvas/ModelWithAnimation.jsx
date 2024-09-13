@@ -33,6 +33,8 @@ const ModelWithAnimation = ({ animationName }) => {
     }, [animations, scene, animationName]);
 
     useFrame((state, delta) => {
+        if (window.innerWidth <= 768) return;
+        
         mixer.current?.update(delta); // Update the animation on each frame
     });
 

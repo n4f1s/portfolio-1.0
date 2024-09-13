@@ -3,8 +3,16 @@ import "./globals.css";
 
 
 export const metadata = {
-  title: "Nafis || Portfolio",
-  description: "Cool 3D website to showcase my skill",
+  // title: "Nafis || Portfolio",
+  // description: "Cool 3D website to showcase my skill",
+  title: {
+    template:
+      "Nafis || Portfolio",
+    default:
+      "Nafis || Portfolio",
+  },
+  description:
+    "Cool 3D website to showcase my skills",
 };
 
 export default function RootLayout({ children }) {

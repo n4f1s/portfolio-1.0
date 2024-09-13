@@ -1,18 +1,21 @@
 'use client'
-import { Vector3 } from 'three';
-import { useRef, useState, useEffect, Suspense } from 'react';
-import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import { useGLTF, SpotLight, useDepthBuffer, OrbitControls, Preload } from '@react-three/drei';
+import { useRef, useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Wrapper } from '@/hoc';
 import { styles } from '@/app/styles';
-import CanvasLoader from './CanvasLoader';
+import dynamic from 'next/dynamic';
+
+
+const Hero = dynamic(() => import('./canvas/Hero'), {
+  ssr: false
+});
 
 
 
 export default function Home2() {
   const sectionRef = useRef();
   const [isVisible, setIsVisible] = useState(false);
+  const [light, setLight] = useState("#98FF98");
 
   // Intersection observer to detect if the section is in the viewport
   useEffect(() => {
@@ -35,14 +38,14 @@ export default function Home2() {
   }, []);
 
   return (
-    <div ref={sectionRef} className='h-full w-full'>
+    <div ref={sectionRef} className='h-screen w-full'>
       <div className='absolute inset-0'>
         <Wrapper>
           <div className='mt-[80px] xs:mt-[120px]'>
-            <h1 className={`${styles.heroHeadText} text-white`}>
-              Hi, I am <span className='text-[#915eff]'>Nafis</span>
+            <h1 className={`${styles.heroHeadText} text-gray1`}>
+              Hi, I am <span className='text-white/50'>Nafis</span>
             </h1>
-            <p className={`${styles.heroSubText} mt-2 text-white-100`}>
+            <p className={`${styles.heroSubText} mt-2 text-gray1-100 text-gray1`}>
               I develop 3D visuals, user <br className='sm:block hidden' />
               interfaces and web applications
             </p>
@@ -52,23 +55,9 @@ export default function Home2() {
 
       {/* Only render the Canvas when the section is in view */}
       {isVisible && (
-        <Canvas
-          shadows
-          dpr={[1, 2]}
-          camera={{ position: [-2, 2, 6], fov: 50, near: 1, far: 20 }}
-        >
-          <Suspense fallback={<CanvasLoader />}>
-            <OrbitControls
-              enableZoom={false}
-              maxPolarAngle={Math.PI / 2}
-              minPolarAngle={Math.PI / 2}
-            />
-            <Scene />
-          </Suspense>
-
-          <Preload all />
-        </Canvas>
+        <Hero lightColor={light} />
       )}
+
       <div className='absolute bottom-4 w-full flex justify-center items-center'>
         <a
           href='#about'
@@ -78,7 +67,7 @@ export default function Home2() {
               behavior: 'smooth'
             })
           }}>
-          <div className='w-[35px] h-[64px] rounded-3xl border-4 border-secondary flex justify-center 
+          <div className='w-[35px] h-[64px] rounded-3xl border-4 border-gray1 flex justify-center 
           items-start p-2'>
             <motion.div
               animate={{
@@ -89,70 +78,36 @@ export default function Home2() {
                 repeat: Infinity,
                 repeatType: 'loop'
               }}
-              className='size-3 rounded-full bg-secondary mb-1'
+              className='size-3 rounded-full bg-gray1 mb-1'
             />
           </div>
         </a>
       </div>
 
       <div className='absolute bottom-24 z-40 text-[11px] sm:text-lg font-semibold'>
-        <div className='sm:px-16 px-6'>
+        <div className='sm:px-16 px-6 flex justify-between items-center text-gray1'>
           Crafted with Next.js, Three.js, Tailwind CSS, and Framer Motion.
         </div>
       </div>
+
+      <div className='absolute bottom-14 sm:bottom-24 z-10 right-0'>
+        <div className='sm:px-16 px-6 flex space-x-2'>
+          <div
+            className='size-5 rounded-full bg-gray1 cursor-pointer'
+            onClick={() => setLight("#656565")}
+          />
+          <div
+            className='size-5 rounded-full bg-[#915eff] cursor-pointer'
+            onClick={() => setLight("#915eff")}
+          />
+          <div
+            className='size-5 rounded-full bg-[#98FF98] cursor-pointer'
+            onClick={() => setLight("#98FF98")}
+          />
+        </div>
+      </div>
+
     </div>
   );
 }
 
-function Scene() {
-  const depthBuffer = useDepthBuffer({ frames: 1 });
-  const { nodes, materials } = useGLTF('/Home2/model.gltf');
-
-  return (
-    <>
-      <MovingSpot depthBuffer={depthBuffer} color="#fff" position={[3, 2.6, 1.5]} />
-      <MovingSpot depthBuffer={depthBuffer} color="#98FF98" position={[1, 3.25, 0]} />
-      <mesh
-        position={[0, -1.03, 0]}
-        geometry={nodes.dragon.geometry}
-        material={materials['Default OBJ.001']}
-        dispose={null}
-      />
-      <mesh receiveShadow position={[0, -1, 0]} rotation-x={-Math.PI / 2}>
-        <planeGeometry args={[50, 50]} />
-        <meshPhongMaterial />
-      </mesh>
-    </>
-  );
-}
-
-function MovingSpot({ vec = new Vector3(), ...props }) {
-  const light = useRef();
-  const viewport = useThree((state) => state.viewport);
-
-  useFrame((state) => {
-    light.current.target.position.lerp(
-      vec.set(
-        (state.pointer.x * viewport.width) / 2,
-        (state.pointer.y * viewport.height) / 2,
-        0
-      ),
-      0.1
-    );
-    light.current.target.updateMatrixWorld();
-  });
-
-  return (
-    <SpotLight
-      castShadow
-      ref={light}
-      penumbra={1}
-      distance={6}
-      angle={0.35}
-      attenuation={5}
-      anglePower={4}
-      intensity={10}
-      {...props}
-    />
-  );
-}

@@ -103,15 +103,17 @@ const Tech = () => {
         <Marquee speed={80} pauseOnClick={true} pauseOnHover={true} gradient={true} direction='right'
           gradientColor="#050816" gradientWidth={100} autoFill={true} style={{ "overflow": "hidden" }}>
           {technologies.map((e, id) => (
-            <div className='' key={id}>
-              <Image
-                src={e.icon}
-                alt={e.name}
-                width={70}
-                height={70}
-                className="object-contain mx-4 sm:mx-10"
-              />
-              <p className='text-center'>
+            <div key={id}>
+              <div className='w-full h-[70px]'>
+                <Image
+                  src={e.icon}
+                  alt={e.name}
+                  width={70}
+                  height={70}
+                  className="object-contain mx-4 sm:mx-10"
+                />
+              </div>
+              <p className='text-center mt-2'>
                 {e.name}
               </p>
             </div>
@@ -122,7 +124,7 @@ const Tech = () => {
           className='mt-10'
           gradientColor="#050816" gradientWidth={100} autoFill={true} style={{ "overflow": "hidden" }}>
           {technologies.map((e, id) => (
-            <div className='' key={id}>
+            <div key={id}>
               <div className='w-full h-[70px]'>
                 <Image
                   src={e.icon}

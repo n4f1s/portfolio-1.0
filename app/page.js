@@ -20,7 +20,7 @@ export default function Home() {
       <div className="relative z-0 bg-primary">
         <div className="w-full h-screen relative overflow-hidden">
           <Hero2 />
-          {/* <StarsCanvas /> */}
+          <StarsCanvas />
         </div>
         <About />
         <Experience />
@@ -28,9 +28,7 @@ export default function Home() {
         <Works />
         <div className="relative z-0">
           <Contact />
-          <div className="">
-            <StarsCanvas />
-          </div>
+          <StarsCanvas />
         </div>
       </div>
     </>
