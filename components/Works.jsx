@@ -5,6 +5,7 @@ import { textVariant } from "@/utils/motion";
 import { useMotionValue, motion, useSpring, useTransform } from "framer-motion";
 import React, { useRef, useState } from "react";
 import { FiArrowRight } from "react-icons/fi";
+import Button from "./Button";
 
 
 
@@ -201,7 +202,7 @@ const Works = () => {
     }
   }
   return (
-    <Wrapper>
+    <Wrapper className="bg-primary">
       <motion.div variants={textVariant()} >
         <p className={styles.sectionSubText}>
           My work
@@ -222,14 +223,11 @@ const Works = () => {
         />
       ))}
 
-      <div className={`flex w-full h-full mt-10
+      <div className={`flex w-full h-full mt-10 items-center"
         ${number < linkData.length ? "block" : "hidden"}`}>
-        <button
-          className="px-3 py-2 bg-tertiary mx-auto font-semibold rounded-lg"
-          onClick={() => handleClick()}
-        >
+        <Button handleClick={() => handleClick()} className="mx-auto">
           Load More
-        </button>
+        </Button>
       </div>
     </Wrapper>
   );
@@ -329,7 +327,7 @@ const Link = ({ heading, imgSrc, subheading, href, tags }) => {
         }}
         transition={{ type: "spring" }}
         src={imgSrc}
-        className="absolute z-0 h-24 w-32 rounded-lg object-cover md:h-auto md:w-[600px]"
+        className="absolute z-0 h-24 w-32 rounded-lg object-cover sm:h-auto sm:w-[300px] lg:w-[600px]"
         alt={`Image representing a link for ${heading}`}
       />
 

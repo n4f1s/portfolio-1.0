@@ -13,7 +13,7 @@ const ModelViewer = dynamic(() => import('@/components/canvas/ModelWithAnimation
 
 
 
-const animations = ["chr205_br01_rd", "chr205_bs01_rd", "chr205_fe01_rd"]
+const animations = ["chr205_br01_rd", "chr205_bs01_rd", "chr205_ba02_rd"]
 
 const ServiceCard = ({ title, icon, color1, color2, id, onHover }) => {
   return (
@@ -96,10 +96,10 @@ const About = () => {
         variants={staggerContainer()}
         initial="hidden"
         whileInView="show"
-        viewport={{ once: false, amount: 0.40 }}
+        viewport={{ once: false, amount: 0.10 }}
       >
         <div className="w-full lg:h-[25vh]">
-          <motion.div variants={textVariant()}>
+          <motion.div variants={textVariant(0.5)}>
             <p className={styles.sectionSubText}>
               Introduction
             </p>
@@ -109,7 +109,7 @@ const About = () => {
           </motion.div>
 
           <motion.p
-            variants={fadeIn("", "", 0.1, 1)}
+            variants={fadeIn("", "", 1, 1)}
             className="mt-4 text-secondary text-[17px] max-w-3xl leading-[30px]"
           >
             As a skilled software developer, I bring extensive experience in TypeScript and JavaScript, 
@@ -127,13 +127,13 @@ const About = () => {
             ))}
           </div>
 
-          <div className="md:ml-10 w-full h-[50vh] md:h-[75vh] mt-10 md:-mt-10">
+          <div className="md:ml-10 w-full h-[50vh] md:h-[60vh] mt-10 md:-mt-[125px]">
             <ModelViewer animation={animation} />
           </div>
 
-          <div className="absolute top-10 left-[300px] font-semibold text-5xl font-serif hidden md:block">
+          {/* <div className="absolute top-10 left-[300px] font-semibold text-5xl font-serif hidden md:block">
               Interact with the cards
-          </div>
+          </div> */}
         </div>
       </motion.div>
     </>

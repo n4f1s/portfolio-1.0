@@ -5,17 +5,17 @@ import { styles } from "@/app/styles";
 
 
 
-const Wrapper = ({children, idName, refName}) => {
+const Wrapper = ({children, idName, refName, className}) => {
 
     return (
         <motion.section
             ref={refName}
             id={idName}
-            variants={staggerContainer()}
+            variants={staggerContainer(0.5, 0.5)}
             initial="hidden"
             whileInView="show"
             viewport={{ once: false, amount: 0.15 }}
-            className={`${styles.padding} max-w-7xl mx-auto relative z-0`}
+            className={`${styles.padding} max-w-7xl mx-auto relative z-0 ${className}`}
         >
             {children}
         </motion.section>

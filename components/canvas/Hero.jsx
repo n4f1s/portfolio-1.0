@@ -28,13 +28,13 @@ const Hero = ({ lightColor }) => {
     )
 }
 
+
 function Scene({ lightColor }) {
-    const depthBuffer = useDepthBuffer({ frames: 2 });
+    const depthBuffer = useDepthBuffer({ frames: 1 });
     const { nodes, materials } = useGLTF('/Home2/model.gltf');
 
     return (
         <>
-            {/* <MovingSpot depthBuffer={depthBuffer} color="" position={[-2.23, 2.2, 1]} /> */}
             <MovingSpot depthBuffer={depthBuffer} color="#fff" position={[3, 2.6, 1.5]} />
             <MovingSpot depthBuffer={depthBuffer} color={lightColor} position={[1, 3.25, 0]} />
             <mesh
@@ -45,7 +45,7 @@ function Scene({ lightColor }) {
             />
             <mesh receiveShadow={false} position={[0, -1, 0]} rotation-x={-Math.PI / 2}>
                 <planeGeometry args={[50, 50]} />
-                <meshPhongMaterial />
+                <meshPhongMaterial /> 
             </mesh>
         </>
     );
@@ -57,7 +57,7 @@ function MovingSpot({ vec = new Vector3(), ...props }) {
 
     useFrame((state) => {
         if (window.innerWidth <= 768) return;
-        
+
         light.current.target.position.lerp(
             vec.set(
                 (state.pointer.x * viewport.width) / 2,
@@ -74,11 +74,11 @@ function MovingSpot({ vec = new Vector3(), ...props }) {
             // castShadow
             ref={light}
             penumbra={1}
-            distance={6}
-            angle={0.35}
+            distance={7}
+            angle={0.32}
             attenuation={5}
             anglePower={4}
-            intensity={7}
+            intensity={6}
             {...props}
         />
     );

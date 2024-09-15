@@ -8,6 +8,7 @@ import { styles } from '@/app/styles';
 import dynamic from 'next/dynamic';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Button from './Button';
 
 const EarthCanvas = dynamic(() => import('./canvas/Earth'), {
   ssr: false
@@ -89,9 +90,9 @@ const Contact = () => {
 
   return (
     <Wrapper idName="contact">
-      <div className='xl:mt-12 xl:flex-row flex-col-reverse flex gap-10 overflow-hidden'>
+      <div className='xl:mt-12  flex-col-reverse flex gap-10 overflow-hidden'>
         <motion.div
-          variants={slideIn('left', 'tween', 0.2, 1)}
+          variants={slideIn('up', 'tween', 0.2, 1)}
           className='flex-[0.75] bg-black-100 p-8 rounded-2xl'
         >
           <p className={styles.sectionSubText}>
@@ -135,7 +136,7 @@ const Contact = () => {
                 type="email"
                 name="email"
                 value={form.email}
-                required 
+                required
                 onChange={handleChange}
                 placeholder="What's your email?"
                 className="bg-tertiary py-4 px-6 placeholder:text-secondary 
@@ -165,20 +166,16 @@ const Contact = () => {
               />
             </label>
 
-            <button
-              type='submit'
-              className='bg-tertiary py-3 px-8 outline-none w-fit text-white font-bold
-              shadow-md shadow-primary rounded-xl'
-            >
+            <Button type='submit'>
               {loading ? 'Sending...' : 'Send'}
-            </button>
+            </Button>
             <ToastContainer />
           </form>
         </motion.div>
 
         <motion.div
-          variants={slideIn('right', 'tween', 0.2, 1)}
-          className='xl:flex-1 xl:h-auto md:h-[550px] h-[350px]'
+          variants={slideIn('down', 'tween', 0.2, 1)}
+          className='md:h-[550px] h-[350px]'
         >
           <EarthCanvas />
         </motion.div>

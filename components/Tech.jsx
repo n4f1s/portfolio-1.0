@@ -89,7 +89,7 @@ const Tech = () => {
   ];
 
   return (
-    <Wrapper idName="Tech">
+    <Wrapper idName="Tech" className="bg-primary">
       <motion.div variants={textVariant()} >
         <p className={styles.sectionSubText}>
           Skills

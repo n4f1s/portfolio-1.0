@@ -4,7 +4,7 @@ import { PointMaterial, Points, Preload } from '@react-three/drei';
 import { Canvas, useFrame } from '@react-three/fiber';
 
 
-const Stars = (props) => {
+export const Stars = (props) => {
   const ref = useRef();
 
   const generateSpherePositions = (count, radius) => {
@@ -30,7 +30,7 @@ const Stars = (props) => {
 
   //For the star dust animation
   useFrame((state, delta) => {
-    if (window.innerWidth <= 768) return;
+    // if (window.innerWidth <= 768) return;
     ref.current.rotation.x -= delta / 10;
     ref.current.rotation.y -= delta / 15;
   })

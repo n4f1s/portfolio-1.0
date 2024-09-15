@@ -1,0 +1,37 @@
+import { motion, transform } from "framer-motion";
+
+
+const Button = ({ children, handleClick, className, type  }) => {
+  return (
+    <motion.button
+      initial={{ "--x": "100%", scale: 1 }}
+      animate={{ "--x": "-100%" }}
+      whileTap={{ scale: 0.90 }}
+      transition={{
+        repeat: Infinity,
+        repeatType: "loop",
+        repeatDelay: 0.1,
+        type: "spring",
+        stiffness: 20,
+        damping: 15,
+        mass: 2,
+        scale: {
+          type: "spring",
+          stiffness: 10,
+          damping: 5,
+          mass: 0.1,
+        },
+      }}
+      type={type}
+      onClick={handleClick}
+      className={`px-6 py-2 rounded-lg relative radial-gradient group ${className}`}
+    >
+      <span className="text-neutral-100 group-hover:text-gray1 tracking-wide font-medium h-full w-full block relative linear-mask">
+        {children}
+      </span>
+      <span className="block absolute inset-0 rounded-lg p-px linear-overlay" />
+    </motion.button>
+  )
+}
+
+export default Button

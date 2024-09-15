@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { Wrapper } from '@/hoc';
 import { styles } from '@/app/styles';
 import dynamic from 'next/dynamic';
+import { fadeIn, textVariant, zoomIn } from '@/utils/motion';
 
 
 const Hero = dynamic(() => import('./canvas/Hero'), {
@@ -37,18 +38,25 @@ export default function Home2() {
     };
   }, []);
 
+
   return (
     <div ref={sectionRef} className='h-screen w-full'>
       <div className='absolute inset-0'>
         <Wrapper>
           <div className='mt-[80px] xs:mt-[120px]'>
-            <h1 className={`${styles.heroHeadText} text-gray1`}>
-              Hi, I am <span className='text-white/50'>Nafis</span>
-            </h1>
-            <p className={`${styles.heroSubText} mt-2 text-gray1-100 text-gray1`}>
+            <motion.h1
+              variants={textVariant(1)}
+              className={`${styles.heroHeadText} text-gray1`}
+            >
+              Hi, I am <span className='text-white/60'>Nafis</span>
+            </motion.h1>
+            <motion.p
+              variants={fadeIn("up", "spring", 1.5, 1)}
+              className={`${styles.heroSubText} mt-2 text-gray1-100 text-gray1`}
+            >
               I develop 3D visuals, user <br className='sm:block hidden' />
               interfaces and web applications
-            </p>
+            </motion.p>
           </div>
         </Wrapper>
       </div>
@@ -58,7 +66,7 @@ export default function Home2() {
         <Hero lightColor={light} />
       )}
 
-      <div className='absolute bottom-4 w-full flex justify-center items-center'>
+      <div className='absolute bottom-10 sm:bottom-4 w-full flex justify-center items-center'>
         <a
           href='#about'
           onClick={() => {
@@ -84,13 +92,14 @@ export default function Home2() {
         </a>
       </div>
 
-      <div className='absolute bottom-24 z-40 text-[11px] sm:text-lg font-semibold'>
-        <div className='sm:px-16 px-6 flex justify-between items-center text-gray1'>
+      <div className='absolute bottom-32 z-40 text-[11px] sm:text-lg font-semibold'>
+        <div className='sm:px-16 px-6 flex justify-between items-center text-gray1 
+        transition-colors duration-500 hover:border-neutral-50'>
           Crafted with Next.js, Three.js, Tailwind CSS, and Framer Motion.
         </div>
       </div>
 
-      <div className='absolute bottom-14 sm:bottom-24 z-10 right-0'>
+      <div className='absolute bottom-20 sm:bottom-32 z-10 right-0'>
         <div className='sm:px-16 px-6 flex space-x-2'>
           <div
             className='size-5 rounded-full bg-gray1 cursor-pointer'

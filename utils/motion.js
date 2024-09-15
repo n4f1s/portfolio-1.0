@@ -1,3 +1,4 @@
+
 export const NavMenuButtonVariants = {
   top: {
       open: {
@@ -29,6 +30,12 @@ export const NavMenuButtonVariants = {
           left: "calc(50% + 10px)",
       },
   },
+}
+
+export const mobileMenuSlide = {
+  initial: { x: "calc(100% + 150px)" },
+  enter: { x: "0", transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1] } },
+  exit: { x: "calc(100% + 150px)", transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1], delay: 0.8 } }
 }
 
 export const textVariant = (delay) => {
@@ -93,7 +100,7 @@ export const textVariant = (delay) => {
     return {
       hidden: {
         x: direction === "left" ? "-100%" : direction === "right" ? "100%" : 0,
-        y: direction === "up" ? "100%" : direction === "down" ? "100%" : 0,
+        y: direction === "up" ? "100%" : direction === "down" ? "-100%" : 0,
       },
       show: {
         x: 0,

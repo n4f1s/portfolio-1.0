@@ -1,28 +1,36 @@
 "use client"
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { styles } from '@/app/styles'
 import Link from 'next/link'
 import { MotionConfig, motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
 import { NavMenuButtonVariants } from '@/utils/motion';
+import MobileNav from './MobileNav';
+import FlipLink from './FlipLink';
+import Image from 'next/image';
+
+
+export const navLinks = [
+  {
+    id: "",
+    title: "Home",
+  },
+  {
+    id: "about",
+    title: "About",
+  },
+  {
+    id: "work",
+    title: "Work",
+  },
+  {
+    id: "contact",
+    title: "Contact",
+  },
+];
 
 const Navbar = () => {
   const [active, setActive] = useState("");
   const [toggle, setToggle] = useState(false);
-
-  const navLinks = [
-    {
-      id: "about",
-      title: "About",
-    },
-    {
-      id: "work",
-      title: "Work",
-    },
-    {
-      id: "contact",
-      title: "Contact",
-    },
-  ];
 
   // Show navbar when scrolling up hide when scrolling down
   const { scrollY } = useScroll();
@@ -63,9 +71,11 @@ const Navbar = () => {
             window.scrollTo(0, 0);
           }}
         >
-          <img
+          <Image
             src='/logo.png'
             alt='Logo'
+            width={64}
+            height={64}
             className='size-16 object-contain'
           />
           <p className='text-white text-[18px] font-bold cursor-pointer flex'>
@@ -80,14 +90,9 @@ const Navbar = () => {
               className={`${active === link.id ? "text-white" : "text-secondary"} 
               text-[18px] font-medium cursor-pointer`}
             >
-              <Link
-                href={`#${link.id}`}
-                onClick={() => {
-                  setActive(link.id);
-                }}
-              >
+              <FlipLink href={`#${link.id}`}>
                 {link.title}
-              </Link>
+              </FlipLink>
             </li>
           ))}
         </ul>
@@ -132,7 +137,18 @@ const Navbar = () => {
             </motion.button>
           </MotionConfig>
 
-          <div className={`${!toggle ? 'hidden' : 'flex'} p-6 black-gradient absolute top-20 
+          <AnimatePresence mode="wait">
+            {toggle &&
+                <MobileNav
+                  toggle={toggle}
+                  setToggle={setToggle}
+                  active={active}
+                  setActive={setActive}
+                />
+            }
+          </AnimatePresence>
+
+          {/* <div className={`${!toggle ? 'hidden' : 'flex'} p-6 black-gradient absolute top-20 
           right-0 mx-4 my-2 min-w[140px] z-40 rounded-xl`}>
             <ul className='list-none flex flex-col justify-end items-center gap-4'>
               {navLinks.map((link) => (
@@ -151,7 +167,7 @@ const Navbar = () => {
                 </li>
               ))}
             </ul>
-          </div>
+          </div> */}
 
         </div>
       </div>

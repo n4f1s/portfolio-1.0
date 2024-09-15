@@ -73,7 +73,7 @@ const Experience = () => {
   const ExperienceCard = ({ experience }) => (
     <VerticalTimelineElement
       visible={inView}
-      className="vertical-timeline-element--work z-20"
+      className="vertical-timeline-element--work z-20 "
       contentStyle={{ background: '#151030', color: '#fff' }}
       contentArrowStyle={{ borderRight: '7px solid #232631' }}
       date={experience.date}
@@ -112,7 +112,7 @@ const Experience = () => {
 
   return (
     <>
-      <Wrapper idName="work" refName={ref}>
+      <Wrapper idName="work" refName={ref} className="bg-primary">
         <motion.div variants={textVariant()} >
           <p className={styles.sectionSubText}>
             What I have done so far
