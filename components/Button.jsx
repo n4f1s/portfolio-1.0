@@ -1,7 +1,7 @@
 import { motion, transform } from "framer-motion";
 
 
-const Button = ({ children, handleClick, className, type  }) => {
+const Button = ({ children, handleClick, className, type }) => {
   return (
     <motion.button
       initial={{ "--x": "100%", scale: 1 }}
@@ -26,7 +26,8 @@ const Button = ({ children, handleClick, className, type  }) => {
       onClick={handleClick}
       className={`px-6 py-2 rounded-lg relative radial-gradient group ${className}`}
     >
-      <span className="text-neutral-100 group-hover:text-gray1 tracking-wide font-medium h-full w-full block relative linear-mask">
+      <span className="text-neutral-100 group-hover:text-gray1 tracking-wide font-medium h-full 
+      w-full block relative linear-mask">
         {children}
       </span>
       <span className="block absolute inset-0 rounded-lg p-px linear-overlay" />

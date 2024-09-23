@@ -1,10 +1,11 @@
 'use client'
-import { useRef, useState, useEffect } from 'react';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Wrapper } from '@/hoc';
 import { styles } from '@/app/styles';
 import dynamic from 'next/dynamic';
-import { fadeIn, textVariant, zoomIn } from '@/utils/motion';
+import { fadeIn, textVariant } from '@/utils/motion';
+
 
 
 const Hero = dynamic(() => import('./canvas/Hero'), {
@@ -14,33 +15,11 @@ const Hero = dynamic(() => import('./canvas/Hero'), {
 
 
 export default function Home2() {
-  const sectionRef = useRef();
-  const [isVisible, setIsVisible] = useState(false);
   const [light, setLight] = useState("#98FF98");
-
-  // Intersection observer to detect if the section is in the viewport
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIsVisible(entry.isIntersecting);
-      },
-      { threshold: 0.2 } // 0.1 means when 10% of the element is visible
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
-      }
-    };
-  }, []);
 
 
   return (
-    <div ref={sectionRef} className='h-screen w-full'>
+    <div className='h-screen w-full'>
       <div className='absolute inset-0'>
         <Wrapper>
           <div className='mt-[80px] xs:mt-[120px]'>
@@ -61,12 +40,10 @@ export default function Home2() {
         </Wrapper>
       </div>
 
-      {/* Only render the Canvas when the section is in view */}
-      {isVisible && (
-        <Hero lightColor={light} />
-      )}
+      {/* 3D dragon */}
+      <Hero lightColor={light} />
 
-      <div className='absolute bottom-10 sm:bottom-4 w-full flex justify-center items-center'>
+      <div className='absolute bottom-10 md:bottom-4 w-full flex justify-center items-center'>
         <a
           href='#about'
           onClick={() => {
@@ -92,27 +69,27 @@ export default function Home2() {
         </a>
       </div>
 
-      <div className='absolute bottom-32 z-40 text-[11px] sm:text-lg font-semibold'>
-        <div className='sm:px-16 px-6 flex justify-between items-center text-gray1 
-        transition-colors duration-500 hover:border-neutral-50'>
+      <div className='absolute bottom-32 left-0 sm:px-16 px-6'>
+        <p className='text-gray1 text-[11px] md:text-lg font-semibold'>
           Crafted with Next.js, Three.js, Tailwind CSS, and Framer Motion.
-        </div>
+        </p>
       </div>
 
-      <div className='absolute bottom-20 sm:bottom-32 z-10 right-0'>
-        <div className='sm:px-16 px-6 flex space-x-2'>
-          <div
-            className='size-5 rounded-full bg-gray1 cursor-pointer'
-            onClick={() => setLight("#656565")}
-          />
-          <div
-            className='size-5 rounded-full bg-[#915eff] cursor-pointer'
-            onClick={() => setLight("#915eff")}
-          />
-          <div
-            className='size-5 rounded-full bg-[#98FF98] cursor-pointer'
-            onClick={() => setLight("#98FF98")}
-          />
+      <div className="absolute bottom-10 md:bottom-16 z-10 right-0">
+        <div className="sm:px-16 px-6 flex space-x-2 md:space-x-3">
+          {[
+            { color: "#656565", size: "scale-[40%]" },
+            { color: "#915eff", size: "scale-[40%]" },
+            { color: "#98FF98", size: "scale-[40%]" },
+          ].map(({ color, size }) => (
+            <div
+              key={color}
+              className={`rounded-full h-10 md:h-20 w-6 ${
+                light === color ? size : ""
+              } transition duration-700 ease-in-out bg-[${color}] cursor-pointer`}
+              onClick={() => setLight(color)}
+            />
+          ))}
         </div>
       </div>
 

@@ -1,8 +1,9 @@
-'use client'
+'use client';
+
 import { Vector3 } from 'three';
 import { useRef, Suspense } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import { useGLTF, SpotLight, useDepthBuffer, OrbitControls, Preload } from '@react-three/drei';
+import { useGLTF, SpotLight, OrbitControls, Preload } from '@react-three/drei';
 import CanvasLoader from '../CanvasLoader';
 
 
@@ -29,23 +30,28 @@ const Hero = ({ lightColor }) => {
 }
 
 
+
 function Scene({ lightColor }) {
-    const depthBuffer = useDepthBuffer({ frames: 1 });
     const { nodes, materials } = useGLTF('/Home2/model.gltf');
 
     return (
         <>
-            <MovingSpot depthBuffer={depthBuffer} color="#fff" position={[3, 2.6, 1.5]} />
-            <MovingSpot depthBuffer={depthBuffer} color={lightColor} position={[1, 3.25, 0]} />
+            <MovingSpot color="#fff" position={[3, 2.6, 1.5]} />
+            <MovingSpot color={lightColor} position={[1, 3.25, 0]} />
             <mesh
                 position={[0, -1.03, 0]}
                 geometry={nodes.dragon.geometry}
-                material={materials['Default OBJ.001']}
+                // material={materials['Default OBJ.001']}
                 dispose={null}
-            />
+                castShadow receiveShadow
+            >
+                <meshPhysicalMaterial clearcoat={0.2} clearcoatRoughness={1}
+                    thickness={1} roughness={0.35}
+                />
+            </mesh>
             <mesh receiveShadow={false} position={[0, -1, 0]} rotation-x={-Math.PI / 2}>
                 <planeGeometry args={[50, 50]} />
-                <meshPhongMaterial /> 
+                <meshPhongMaterial />
             </mesh>
         </>
     );

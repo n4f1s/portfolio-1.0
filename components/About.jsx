@@ -127,13 +127,10 @@ const About = () => {
             ))}
           </div>
 
-          <div className="md:ml-10 w-full h-[50vh] md:h-[60vh] mt-10 md:-mt-[125px]">
+          <div className="md:ml-10 w-full h-[50vh] md:h-[60vh] mt-10 md:-mt-[125px] sm:block hidden">
             <ModelViewer animation={animation} />
           </div>
 
-          {/* <div className="absolute top-10 left-[300px] font-semibold text-5xl font-serif hidden md:block">
-              Interact with the cards
-          </div> */}
         </div>
       </motion.div>
     </>

@@ -202,7 +202,7 @@ const Works = () => {
     }
   }
   return (
-    <Wrapper className="bg-primary">
+    <Wrapper>
       <motion.div variants={textVariant()} >
         <p className={styles.sectionSubText}>
           My work

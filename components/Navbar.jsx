@@ -1,5 +1,5 @@
 "use client"
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { styles } from '@/app/styles'
 import Link from 'next/link'
 import { MotionConfig, motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
@@ -31,6 +31,13 @@ export const navLinks = [
 const Navbar = () => {
   const [active, setActive] = useState("");
   const [toggle, setToggle] = useState(false);
+
+  // If the Mobile Menu is active scroll disable, else scroll enable
+  useEffect(() => {
+    toggle
+      ? (document.body.style.overflow = 'hidden')
+      : (document.body.style.overflow = 'auto')
+  }, [toggle]);
 
   // Show navbar when scrolling up hide when scrolling down
   const { scrollY } = useScroll();
@@ -83,7 +90,7 @@ const Navbar = () => {
           </p>
         </Link>
 
-        <ul className='list-none hidden sm:flex flex-row gap-10'>
+        <ul className='list-none hidden md:flex flex-row gap-10'>
           {navLinks.map((link) => (
             <li
               key={link.id}
@@ -98,7 +105,7 @@ const Navbar = () => {
         </ul>
 
         {/* Mobile Menu */}
-        <div className='sm:hidden flex flex-1 justify-end items-center'>
+        <div className={`${toggle ? "" : "md:hidden"} flex flex-1 justify-end items-center`}>
           {/* Mobile menu button */}
           <MotionConfig
             transition={{
@@ -139,35 +146,14 @@ const Navbar = () => {
 
           <AnimatePresence mode="wait">
             {toggle &&
-                <MobileNav
-                  toggle={toggle}
-                  setToggle={setToggle}
-                  active={active}
-                  setActive={setActive}
-                />
+              <MobileNav
+                toggle={toggle}
+                setToggle={setToggle}
+                active={active}
+                setActive={setActive}
+              />
             }
           </AnimatePresence>
-
-          {/* <div className={`${!toggle ? 'hidden' : 'flex'} p-6 black-gradient absolute top-20 
-          right-0 mx-4 my-2 min-w[140px] z-40 rounded-xl`}>
-            <ul className='list-none flex flex-col justify-end items-center gap-4'>
-              {navLinks.map((link) => (
-                <li
-                  key={link.id}
-                  className={`${active === link.title ? "text-white" : "text-secondary"} 
-                  hover:text-white text-[16px] font-medium cursor-pointer`}
-                  onClick={() => {
-                    setToggle(!toggle);
-                    setActive(link.title);
-                  }}
-                >
-                  <a href={`#${link.id}`}>
-                    {link.title}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div> */}
 
         </div>
       </div>

@@ -6,36 +6,36 @@ import * as THREE from 'three';
 import CanvasLoader from '../CanvasLoader';
 
 const ModelWithAnimation = ({ animationName }) => {
-    const { scene, animations } = useGLTF('/models/model1.glb'); // Your GLTF/GLB file path
-    const mixer = useRef();
-    const group = useRef();
-
+    const { scene, animations } = useGLTF('/models/model1.glb'); // Load the GLTF model
+    const mixer = useRef(null);  // Ref to store the AnimationMixer
+    const group = useRef();  // Ref for the model group
+  
     useEffect(() => {
-        if (animations.length) {
-            mixer.current = new THREE.AnimationMixer(scene);
-
-            // Log all available animations and their names
-
-            //   animations.forEach((clip, index) => {
-            //     console.log(`Animation ${index}: ${clip.name}`);
-            //   });
-
-
-            //   Optionally, you can play a specific animation
-            const clip = animations.find(clip => clip.name === animationName);
-            if (clip) {
-                const action = mixer.current.clipAction(clip);
-                action.play(); // Play the selected animation
-                action.loop = THREE.LoopRepeat; // Ensure the animation loops
-            } else {
-                console.warn(`Animation "AnimationName" not found.`);
-            }
+      if (animations.length && scene) {
+        // Initialize the mixer and play the selected animation
+        mixer.current = new THREE.AnimationMixer(scene);
+  
+        const clip = animations.find(clip => clip.name === animationName);
+        if (clip) {
+          const action = mixer.current.clipAction(clip);
+          action.play();
+          action.loop = THREE.LoopRepeat;
+        } else {
+          console.warn(`Animation "${animationName}" not found.`);
         }
+      }
+  
+      // Clean-up function to stop the mixer and release memory
+      return () => {
+        if (mixer.current) {
+          mixer.current.stopAllAction();  // Stop any playing animations
+          mixer.current.uncacheRoot(scene);  // Remove the scene from the mixer cache
+          mixer.current = null;  // Clear the mixer reference
+        }
+      };
     }, [animations, scene, animationName]);
 
     useFrame((state, delta) => {
-        if (window.innerWidth <= 768) return;
-
         mixer.current?.update(delta); // Update the animation on each frame
     });
 
@@ -56,25 +56,6 @@ function Ground(props) {
 }
 
 const ModelViewer = ({ animation }) => {
-    const [isDesktop, setIsDesktop] = useState(window.innerWidth > 760);
-
-    const handleResize = () => {
-        if (window.innerWidth > 760) {
-            setIsDesktop(true);  // Enable OrbitControls for desktop
-        } else {
-            setIsDesktop(false); // Disable OrbitControls for mobile
-        }
-    };
-
-    useEffect(() => {
-        window.addEventListener("resize", handleResize);
-        handleResize(); // Call on initial render to set the correct state
-
-        return () => {
-            window.removeEventListener("resize", handleResize);
-        };
-    }, []);
-
     return (
         <Canvas camera={{ position: [-1, 3, -4], fov: 60 }}>
 
@@ -86,23 +67,20 @@ const ModelViewer = ({ animation }) => {
                     blur={[500, 100]}
                     mixBlur={12}
                     mixStrength={0.8}
-                    rotation={[-Math.PI / 2, 0, Math.PI / 2]} 
+                    rotation={[-Math.PI / 2, 0, Math.PI / 2]}
                     position-y={-0.1}
                 />
 
                 <ModelWithAnimation animationName={animation} />
             </Suspense>
 
-            {/* Conditionally render OrbitControls based on screen size */}
-            {isDesktop && (
-                <OrbitControls
-                    enableZoom={false}
-                    enablePan={true}
-                    minPolarAngle={Math.PI / 10}
-                    maxPolarAngle={Math.PI / 3}
-                    zoomSpeed={0}
-                />
-            )}
+            <OrbitControls
+                enableZoom={false}
+                enablePan={true}
+                minPolarAngle={Math.PI / 10}
+                maxPolarAngle={Math.PI / 3}
+                zoomSpeed={0}
+            />
         </Canvas>
     );
 };
