@@ -1,6 +1,7 @@
 import "./globals.css";
 
 
+
 export const metadata = {
   // title: "Nafis || Portfolio",
   // description: "Cool 3D website to showcase my skill",
@@ -15,7 +16,7 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
-  
+
   return (
     <html lang="en">
       <body

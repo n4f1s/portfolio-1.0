@@ -13,6 +13,12 @@
   color-scheme: dark;
 }
 
+/* Change the background color and text color of selected text */
+::selection {
+  background-color: #aaa6c3; /* Tomato color */
+  color: black; /* White text */
+}
+
 /* Loader animation start */
 .type-and-delete {
   animation: typeAndDelete 4s steps(11) infinite, blinkCursor 0.5s step-end infinite alternate ;

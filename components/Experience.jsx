@@ -1,26 +1,17 @@
 'use client'
-import React from 'react'
-import { VerticalTimeline, VerticalTimelineElement } from 'react-vertical-timeline-component';
-import 'react-vertical-timeline-component/style.min.css';
+
 import { motion } from 'framer-motion';
 import { Wrapper } from '@/hoc';
 import { textVariant } from '@/utils/motion';
 import { styles } from '@/app/styles';
-import { useInView } from "react-intersection-observer";
-import MouseFollower from './MouseFollower';
-
 
 const Experience = () => {
-  const { ref, inView } = useInView({
-    triggerOnce: false,
-    threshold: 0.2,
-  });
   const experiences = [
     {
       title: "React.js Developer",
       company_name: "Starbucks",
       icon: "/company/starbucks.png",
-      iconBg: "#383E56",
+      iconBg: "bg-[#383E56]",
       date: "March 2020 - April 2021",
       points: [
         "Developing and maintaining web applications using React.js and other related technologies.",
@@ -33,7 +24,7 @@ const Experience = () => {
       title: "React Native Developer",
       company_name: "Tesla",
       icon: "/company/starbucks.png",
-      iconBg: "#E6DEDD",
+      iconBg: "bg-[#E6DEDD]",
       date: "Jan 2021 - Feb 2022",
       points: [
         "Developing and maintaining web applications using React.js and other related technologies.",
@@ -46,7 +37,7 @@ const Experience = () => {
       title: "Web Developer",
       company_name: "Shopify",
       icon: "/company/starbucks.png",
-      iconBg: "#383E56",
+      iconBg: "bg-[#383E56]",
       date: "Jan 2022 - Jan 2023",
       points: [
         "Developing and maintaining web applications using React.js and other related technologies.",
@@ -59,7 +50,7 @@ const Experience = () => {
       title: "Full stack Developer",
       company_name: "Meta",
       icon: "/company/starbucks.png",
-      iconBg: "#E6DEDD",
+      iconBg: "bg-[#E6DEDD]",
       date: "Jan 2023 - Present",
       points: [
         "Developing and maintaining web applications using React.js and other related technologies.",
@@ -69,17 +60,94 @@ const Experience = () => {
       ],
     },
   ];
+  
+
+  const ExperienceCard = ({ experience, index }) => {
+    return (
+      <div className="grid grid-cols-12 group">
+        <div className='lg:block hidden col-span-3 px-4 mt-2'>
+          <motion.p
+            initial={{ opacity: 0, x: -80 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ amount: 0.2 }}
+            transition={{
+              duration: 0.6,
+              mass: 2,
+              type: "spring",
+              ease: "easeInOut",
+              delay: 0.3
+            }}
+            className="text-right text-xl">
+            {experience.date}
+          </motion.p>
+          <div className='w-full h-0.5 bg-white my-2' />
+          <p className="text-secondary text-[16px] font-semibold text-right">{experience.company_name}</p>
+        </div>
+        <div className="col-span-2 lg:col-span-1 h-full relative ml-[17px]">
+          <div className="w-1 bg-white relative" style={{ height: 'calc(100% + 40px)' }}>
+            <motion.div
+              initial={{ scale: [0, 0, 0] }}
+              whileInView={{ scale: [1, 1.5, 1] }}
+              transition={{
+                duration: 0.6,
+                ease: "easeInOut",
+                delay: 0.3
+              }}
+              className={`absolute top-0 -left-[19px] size-[42px] ${experience.iconBg} rounded-full 
+              flex items-center justify-center`}>
+              <img
+                src={experience.icon}
+                alt={experience.company_name}
+                className="size-[40px]"
+              />
+            </motion.div>
+              {/* Group hover gradiant backgroup */}
+            <div className='absolute top-0 -left-20 green-pink-gradient group-hover:w-40 h-40 
+            rounded-full blur-3xl' />
+          </div>
+        </div>
+        <motion.div
+          initial={{ opacity: 0, x: 80 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ amount: 0.2 }}
+          transition={{
+            duration: 0.6,
+            mass: 2,
+            type: "spring",
+            ease: "easeInOut",
+            delay: 0.3
+          }}
+          className="col-span-10 lg:col-span-8 h-full mt-1 relative border-b-2">
+          <div className="w-full h-full bg-tertiary px-4 py-4">
+            <h3 className="text-white text-[24px] font-bold -mt-3">{experience.title}</h3>
+            <p className="text-secondary text-[16px] font-semibold lg:hidden">{experience.company_name}</p>
+
+            <ul className="mt-5 list-disc ml-5 space-y-2">
+              {experience.points.map((point, index) => (
+                <li key={`experience-point-${index}`} className="text-white-100 text-[14px] pl-1 
+                tracking-wider">
+                  {point}
+                </li>
+              ))}
+            </ul>
+
+            <p className="mt-6 lg:hidden block">{experience.date}</p>
+          </div>
+
+          <div className="w-0 h-0 border-l-[6px] md:border-l-[12.5px] border-l-transparent 
+            border-r-[6px] md:border-r-[12.5px] border-r-transparent border-b-[12.5px] 
+            md:border-b-[25px] border-b-[#9ca3af] absolute top-1 -rotate-90 -left-[25px]" 
+          />
+        
+        </motion.div>
+      </div>
+    );
+  };
+
 
   return (
     <>
-      <div className={`${inView ? "sm:block hidden" : "hidden"}`}>
-        <MouseFollower sectionId="work" />
-      </div>
-
-      <div className='absolute top-[30vh] right-20 violet-gradient w-80 h-80 rounded-3xl blur-[100px]' />
-      <div className='absolute top-[70vh] left-20 green-pink-gradient w-80 h-80 rounded-full blur-[100px]' />
-
-      <Wrapper idName="work" refName={ref}>
+      <Wrapper idName="work" className="overflow-hidden">
         <motion.div variants={textVariant()} >
           <p className={styles.sectionSubText}>
             What I have done so far
@@ -89,68 +157,14 @@ const Experience = () => {
           </h2>
         </motion.div>
 
-        <div className='mt-20 flex flex-col'>
-          <VerticalTimeline lineColor='#fff' animate={true}>
+        <div className='mt-20 space-y-10'>
 
-            {experiences.map((item, index) => {
-              const { ref, inView } = useInView({
-                triggerOnce: false,
-                delay: 700,
-                threshold: 0.5,
-              });
+          {experiences.map((experience, index) => (
+            <ExperienceCard key={index} experience={experience} index={index} />
+          ))}
 
-              return (
-                <div key={index} ref={ref} className="vertical-timeline-element">
-                  <VerticalTimelineElement
-                    contentStyle={{
-                      background: '#0000',
-                      color: '#fff',
-                      boxShadow: 'none',
-                      // border: '1px solid rgba(0, 0, 0, 0.05)',
-                      textAlign: 'left',
-                      // padding: '1.3rem 2rem',
-                    }}
-                    contentArrowStyle={{
-                      borderRight: '0.4rem solid #9ca3af',
-                    }}
-                    visible={inView}
-                    date={item.date}
-                    icon={
-                      <div className='flex justify-center items-center w-full h-full'>
-                        <img
-                          src={item.icon}
-                          alt={item.company_name}
-                          className='size-[60%] object-contain'
-                        />
-                      </div>
-                    }
-                  >
-                    <div>
-                      <h3 className='text-white text-[24px] font-bold -mt-3'>
-                        {item.title}
-                      </h3>
-                      <p className='text-secondary text-[16px] font-semibold'>
-                        {item.company_name}
-                      </p>
-
-                      <ul className="mt-5 list-disc ml-5 space-y-2">
-                        {item.points.map((point, index) => (
-                          <li
-                            key={`item-point-${index}`}
-                            className='text-white-100 text-[14px] pl-1 tracking-wider'
-                          >
-                            {point}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </VerticalTimelineElement>
-                </div>
-              )
-            })}
-
-          </VerticalTimeline>
         </div>
+
       </Wrapper>
     </>
   )

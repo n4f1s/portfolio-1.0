@@ -1,7 +1,8 @@
 'use client'
-import React, { Suspense, useMemo, useRef, useState } from 'react'
+import React, { Suspense, useMemo, useRef } from 'react'
 import { PointMaterial, Points, Preload } from '@react-three/drei';
 import { Canvas, useFrame } from '@react-three/fiber';
+
 
 
 export const Stars = (props) => {
@@ -13,11 +14,11 @@ export const Stars = (props) => {
       const theta = Math.random() * 2 * Math.PI;
       const phi = Math.acos(2 * Math.random() - 1);
       const r = Math.cbrt(Math.random()) * radius;
-  
+
       const x = r * Math.sin(phi) * Math.cos(theta);
       const y = r * Math.sin(phi) * Math.sin(theta);
       const z = r * Math.cos(phi);
-  
+
       positions[i * 3] = x;
       positions[i * 3 + 1] = y;
       positions[i * 3 + 2] = z;
@@ -36,7 +37,7 @@ export const Stars = (props) => {
   })
 
   return (
-    <group rotation={[0, 0, Math.PI /4]}>
+    <group rotation={[0, 0, Math.PI / 4]}>
       <Points ref={ref} positions={sphere} stride={3} frustumCulled {...props}>
         <PointMaterial
           transparent
@@ -51,9 +52,8 @@ export const Stars = (props) => {
 }
 
 const StarsCanvas = () => {
-
   return (
-    <div className='w-full h-full absolute inset-0 z-[-1]'>
+    <div className='w-full h-full absolute inset-0 z-[-1]' >
       <Canvas camera={{ position: [0, 0, 1] }}>
         <Suspense fallback={null}>
           <Stars />

@@ -33,7 +33,7 @@ const MobileNav = ({ toggle, setToggle, active, setActive }) => {
                                     exit={{ scale: 0, opacity: 0 }}
                                 >
                                     <Link
-                                        href={`#${data.id}`}
+                                        href={`${data.id}`}
                                         onClick={() => {
                                             setActive(data.id);
                                             setToggle(!toggle);

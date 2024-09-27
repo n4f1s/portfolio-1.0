@@ -7,23 +7,24 @@ import { NavMenuButtonVariants } from '@/utils/motion';
 import MobileNav from './MobileNav';
 import FlipLink from './FlipLink';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 
 
 export const navLinks = [
   {
-    id: "",
+    id: "/",
     title: "Home",
   },
   {
-    id: "about",
+    id: "/pages/about",
     title: "About",
   },
   {
-    id: "work",
-    title: "Work",
+    id: "/pages/projects",
+    title: "Projects",
   },
   {
-    id: "contact",
+    id: "/pages/contact",
     title: "Contact",
   },
 ];
@@ -58,9 +59,11 @@ const Navbar = () => {
     }
   })
 
+  const url = usePathname();
+
   return (
     <motion.nav
-      className={`${styles.paddingX} w-full flex items-center py-2 fixed top-0 z-50 
+      className={`${styles.paddingX} w-full flex items-center py-2 fixed top-0 z-40 
       ${!navBg ? "bg-transparent" : "bg-slate-800/50 backdrop-blur-sm"}`}
       variants={{
         visible: { y: 0 },
@@ -73,10 +76,6 @@ const Navbar = () => {
         <Link
           href="/"
           className='flex items-center gap-2'
-          onClick={() => {
-            setActive("");
-            window.scrollTo(0, 0);
-          }}
         >
           <Image
             src='/logo.png'
@@ -94,10 +93,10 @@ const Navbar = () => {
           {navLinks.map((link) => (
             <li
               key={link.id}
-              className={`${active === link.id ? "text-white" : "text-secondary"} 
+              className={`${url === link.id ? "text-white" : "text-secondary"} 
               text-[18px] font-medium cursor-pointer`}
             >
-              <FlipLink href={`#${link.id}`}>
+              <FlipLink href={`${link.id}`}>
                 {link.title}
               </FlipLink>
             </li>
