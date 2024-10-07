@@ -48,10 +48,10 @@ const Navbar = () => {
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     const previous = scrollY.getPrevious();
-    if (latest > previous && latest > 550) {
+    if (latest > previous && latest > 250) {
       setHidden(true);
       setNavBg(true);
-    } else if (latest < 550) {
+    } else if (latest < 250) {
       setNavBg(false);
     }
     else {
@@ -82,7 +82,7 @@ const Navbar = () => {
             alt='Logo'
             width={64}
             height={64}
-            className='size-16 object-contain'
+            className='object-contain'
           />
           <p className='text-white text-[18px] font-bold cursor-pointer flex'>
             Nafis &nbsp; <span className='sm:block hidden'>| Developer</span>

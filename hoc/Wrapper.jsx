@@ -14,7 +14,7 @@ const Wrapper = ({children, idName, refName, className}) => {
             variants={staggerContainer(0.5, 0.5)}
             initial="hidden"
             whileInView="show"
-            viewport={{ once: false, amount: 0.15 }}
+            viewport={{ once: false, amount: 0.10 }}
             className={`${styles.padding} max-w-7xl mx-auto relative z-0 ${className}`}
         >
             {children}

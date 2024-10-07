@@ -12,9 +12,7 @@ const page = () => {
     <>
       <div className="relative z-0">
         <Contact />
-        {/* <div className="hidden sm:block"> */}
-          <StarsCanvas />
-        {/* </div> */}
+        <StarsCanvas />
       </div>
     </>
   )

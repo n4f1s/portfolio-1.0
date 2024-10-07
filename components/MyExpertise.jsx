@@ -89,13 +89,13 @@ const MyExpertise = () => {
 
     return (
         <Wrapper>
-            <motion.div variants={textVariant(1)} className="text-center">
+            <motion.div variants={textVariant(1)}>
                 <h2 className={styles.sectionHeadText}>
                     My Expertise
                 </h2>
             </motion.div>
 
-            <div className="mt-20 sm:mt-40 lg:mt-10 flex flex-col md:flex-row w-full h-full relative">
+            <div className="mt-20 sm:mt-24 flex flex-col md:flex-row w-full h-full relative">
                 <div className="flex flex-col items-center gap-10 mx-10 md:mx-0 md:ml-4 space-y-8">
                     {Services.map((service) => (
                         <ServiceCard key={service.title} {...service} onHover={handleHover} />
@@ -104,7 +104,7 @@ const MyExpertise = () => {
                 {/* Arrow Image */}
                 <img src="/arrow.gif" alt="Arrow" className="absolute top-20 left-[30%] md:block hidden" />
 
-                <div className="md:ml-10 w-full mt-0 md:-mt-[125px]">
+                <div className="md:ml-10 w-full h-[50vh] mt-0 md:-mt-[125px] mx-auto">
                     <ModelViewer animation={animation} />
                 </div>
 

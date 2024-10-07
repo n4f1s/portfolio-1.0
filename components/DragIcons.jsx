@@ -103,10 +103,10 @@ export const DragIcons = () => {
       </div>
 
       <div className="flex flex-row flex-wrap w-full h-full overflow-hidden items-center 
-          justify-center md:hidden">
+          justify-center md:hidden mt-10 gap-4">
             {technologies.map((e, id) => {
               return (
-                <div key={id} className="w-[80px] h-[100px]">
+                <div key={id} className="size-[50px]">
                   <motion.img
                     initial={{ opacity: 0, y: -50 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -140,7 +140,7 @@ const Cards = () => {
             src={e.icon}
             alt={e.name}
             left={`${(isTopRow ? id * 11 : id * 11)}%`}
-            bottom={isTopRow ? "0" : "25%"}
+            bottom={isTopRow ? "0" : "30%"}
             name={e.name}
             index={id}
           />

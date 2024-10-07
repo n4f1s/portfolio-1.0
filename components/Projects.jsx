@@ -8,196 +8,202 @@ import { FiArrowRight } from "react-icons/fi";
 import Button from "./Button";
 
 
+export const projectsData = [
+  {
+    id: 1,
+    heading: "FunFuse",
+    subheading: "Learn what we do here",
+    img: "/projects/funfuse.webp",
+    href: "#",
+    tags: [
+      {
+        name: "react",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "mongodb",
+        color: "green-text-gradient",
+      },
+      {
+        name: "tailwind",
+        color: "pink-text-gradient",
+      },
+    ],
+  },
+  {
+    id: 2,
+    heading: "Play Boom Games",
+    subheading: "Learn what we do here",
+    img: "/projects/PlayBoom.webp",
+    href: "https://playboom.netlify.app/",
+    tags: [
+      {
+        name: "react",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "mongodb",
+        color: "green-text-gradient",
+      },
+      {
+        name: "tailwind",
+        color: "pink-text-gradient",
+      },
+    ]
+  },
+  {
+    id: 3,
+    heading: "Apple Clone",
+    subheading: "Learn what we do here",
+    img: "/projects/appleclone.webp",
+    href: "#",
+    tags: [
+      {
+        name: "react",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "mongodb",
+        color: "green-text-gradient",
+      },
+      {
+        name: "tailwind",
+        color: "pink-text-gradient",
+      },
+    ]
+  },
+  {
+    id: 4,
+    heading: "Virtual Bank",
+    subheading: "Learn what we do here",
+    img: "/projects/virtualbank.webp",
+    href: "#",
+    tags: [
+      {
+        name: "react",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "mongodb",
+        color: "green-text-gradient",
+      },
+      {
+        name: "tailwind",
+        color: "pink-text-gradient",
+      },
+    ]
+  },
+  {
+    id: 5,
+    heading: "About",
+    subheading: "Learn what we do here",
+    img: "/projects/funfuse.webp",
+    href: "#",
+    tags: [
+      {
+        name: "react",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "mongodb",
+        color: "green-text-gradient",
+      },
+      {
+        name: "tailwind",
+        color: "pink-text-gradient",
+      },
+    ]
+  },
+  {
+    id: 6,
+    heading: "About",
+    subheading: "Learn what we do here",
+    img: "/projects/funfuse.webp",
+    href: "#",
+    tags: [
+      {
+        name: "react",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "mongodb",
+        color: "green-text-gradient",
+      },
+      {
+        name: "tailwind",
+        color: "pink-text-gradient",
+      },
+    ]
+  },
+  {
+    id: 7,
+    heading: "About",
+    subheading: "Learn what we do here",
+    img: "/projects/petopia.webp",
+    href: "#",
+    tags: [
+      {
+        name: "react",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "mongodb",
+        color: "green-text-gradient",
+      },
+      {
+        name: "tailwind",
+        color: "pink-text-gradient",
+      },
+    ]
+  },
+  {
+    id: 8,
+    heading: "About",
+    subheading: "Learn what we do here",
+    img: "/projects/aora.webp",
+    href: "#",
+    tags: [
+      {
+        name: "react",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "mongodb",
+        color: "green-text-gradient",
+      },
+      {
+        name: "tailwind",
+        color: "pink-text-gradient",
+      },
+    ]
+  },
+  {
+    id: 9,
+    heading: "About",
+    subheading: "Learn what we do here",
+    img: "/projects/funfuse.webp",
+    href: "#",
+    tags: [
+      {
+        name: "react",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "mongodb",
+        color: "green-text-gradient",
+      },
+      {
+        name: "tailwind",
+        color: "pink-text-gradient",
+      },
+    ]
+  },
+]
 
-const Works = () => {
-  const linkData = [
-    {
-      id: 1,
-      heading: "About",
-      subheading: "Learn what we do here",
-      img: "/projects/funfuse.webp",
-      href: "#",
-      tags: [
-        {
-          name: "react",
-          color: "blue-text-gradient",
-        },
-        {
-          name: "mongodb",
-          color: "green-text-gradient",
-        },
-        {
-          name: "tailwind",
-          color: "pink-text-gradient",
-        },
-      ],
-      tags: [
-        {
-          name: "react",
-          color: "blue-text-gradient",
-        },
-        {
-          name: "mongodb",
-          color: "green-text-gradient",
-        },
-        {
-          name: "tailwind",
-          color: "pink-text-gradient",
-        },
-      ],
-    },
-    {
-      id: 2,
-      heading: "About",
-      subheading: "Learn what we do here",
-      img: "/projects/funfuse.webp",
-      href: "#",
-      tags: [
-        {
-          name: "react",
-          color: "blue-text-gradient",
-        },
-        {
-          name: "mongodb",
-          color: "green-text-gradient",
-        },
-        {
-          name: "tailwind",
-          color: "pink-text-gradient",
-        },
-      ]
-    },
-    {
-      id: 3,
-      heading: "About",
-      subheading: "Learn what we do here",
-      img: "/projects/funfuse.webp",
-      href: "#",
-      tags: [
-        {
-          name: "react",
-          color: "blue-text-gradient",
-        },
-        {
-          name: "mongodb",
-          color: "green-text-gradient",
-        },
-        {
-          name: "tailwind",
-          color: "pink-text-gradient",
-        },
-      ]
-    },
-    {
-      id: 4,
-      heading: "About",
-      subheading: "Learn what we do here",
-      img: "/projects/funfuse.webp",
-      href: "#",
-      tags: [
-        {
-          name: "react",
-          color: "blue-text-gradient",
-        },
-        {
-          name: "mongodb",
-          color: "green-text-gradient",
-        },
-        {
-          name: "tailwind",
-          color: "pink-text-gradient",
-        },
-      ]
-    },
-    {
-      id: 5,
-      heading: "About",
-      subheading: "Learn what we do here",
-      img: "/projects/funfuse.webp",
-      href: "#",
-      tags: [
-        {
-          name: "react",
-          color: "blue-text-gradient",
-        },
-        {
-          name: "mongodb",
-          color: "green-text-gradient",
-        },
-        {
-          name: "tailwind",
-          color: "pink-text-gradient",
-        },
-      ]
-    },
-    {
-      id: 6,
-      heading: "About",
-      subheading: "Learn what we do here",
-      img: "/projects/funfuse.webp",
-      href: "#",
-      tags: [
-        {
-          name: "react",
-          color: "blue-text-gradient",
-        },
-        {
-          name: "mongodb",
-          color: "green-text-gradient",
-        },
-        {
-          name: "tailwind",
-          color: "pink-text-gradient",
-        },
-      ]
-    },
-    {
-      id: 7,
-      heading: "About",
-      subheading: "Learn what we do here",
-      img: "/projects/funfuse.webp",
-      href: "#",
-      tags: [
-        {
-          name: "react",
-          color: "blue-text-gradient",
-        },
-        {
-          name: "mongodb",
-          color: "green-text-gradient",
-        },
-        {
-          name: "tailwind",
-          color: "pink-text-gradient",
-        },
-      ]
-    },
-    {
-      id: 8,
-      heading: "About",
-      subheading: "Learn what we do here",
-      img: "/projects/funfuse.webp",
-      href: "#",
-      tags: [
-        {
-          name: "react",
-          color: "blue-text-gradient",
-        },
-        {
-          name: "mongodb",
-          color: "green-text-gradient",
-        },
-        {
-          name: "tailwind",
-          color: "pink-text-gradient",
-        },
-      ]
-    },
-  ]
-
+const Projects = () => {
   const [number, setNumber] = useState(4)
   const handleClick = () => {
-    if (number < linkData.length) {
+    if (number < projectsData.length) {
       setNumber(number + 5);
     }
   }
@@ -212,7 +218,7 @@ const Works = () => {
         </h2>
       </motion.div>
 
-      {linkData.slice(0, number).map((item, index) => (
+      {projectsData.slice(0, number).map((item, index) => (
         <Link
           heading={item.heading}
           subheading={item.subheading}
@@ -224,7 +230,7 @@ const Works = () => {
       ))}
 
       <div className={`flex w-full h-full mt-10 items-center"
-        ${number < linkData.length ? "block" : "hidden"}`}>
+        ${number < projectsData.length ? "block" : "hidden"}`}>
         <Button handleClick={() => handleClick()} className="mx-auto">
           Load More
         </Button>
@@ -265,6 +271,7 @@ const Link = ({ heading, imgSrc, subheading, href, tags }) => {
     <motion.a
       href={href}
       ref={ref}
+      target="new"
       onMouseMove={handleMouseMove}
       initial="initial"
       whileHover="whileHover"
@@ -295,7 +302,7 @@ const Link = ({ heading, imgSrc, subheading, href, tags }) => {
               className="inline-block"
               key={i}
             >
-              {l}
+              {l === " " ? "\u00A0" : l}
             </motion.span>
           ))}
         </motion.span>
@@ -351,4 +358,4 @@ const Link = ({ heading, imgSrc, subheading, href, tags }) => {
   );
 };
 
-export default Works;
+export default Projects;

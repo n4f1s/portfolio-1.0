@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 const DURATION = 0.40;
 const STAGGER = 0.07;
 
-const FlipLink = ({ children, href }) => {
+const FlipLink = ({ children, href, className }) => {
     const words = children.split("");
 
     return (
@@ -14,7 +14,7 @@ const FlipLink = ({ children, href }) => {
             initial="initial"
             whileHover="hovered"
             href={href}
-            className="relative block overflow-hidden whitespace-nowrap uppercase"
+            className={`relative block overflow-hidden whitespace-nowrap uppercase ${className}`}
             style={{
                 lineHeight: 0.75,
             }}

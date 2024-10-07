@@ -2,7 +2,6 @@
 
 import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import Navbar from "./Navbar";
 
 
 export const expand = {
@@ -57,17 +56,17 @@ export default function PageTransition({ children, backgroundColor }) {
         }
     }
 
-    const nbOfColumns = 6
+    const nbOfColumns = 5
     return (
         <AnimatePresence mode="wait">
-            <div style={{ backgroundColor }} className="">
-                <motion.div {...anim(opacity)} className='fixed w-full h-screen bg-black z-50 
+            <div style={{ backgroundColor }}>
+                <motion.div {...anim(opacity)} className='fixed w-full h-screen bg-primary
                 pointer-events-none inset-0' />
                 <div className='fixed w-[100vw] h-screen flex left-0 top-0 pointer-events-none z-50'>
                     {
                         [...Array(nbOfColumns)].map((_, i) => {
                             return (
-                                <motion.div className="relative h-full w-full bg-white" 
+                                <motion.div className="relative h-full w-full bg-secondary" 
                                 key={i} {...anim(expand, nbOfColumns - i)} />
                             )
                         })

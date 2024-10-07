@@ -5,7 +5,6 @@ import { Wrapper } from '@/hoc';
 import { styles } from '@/app/styles';
 import dynamic from 'next/dynamic';
 import { fadeIn, textVariant } from '@/utils/motion';
-import Button from './Button';
 
 
 const Hero = dynamic(() => import('./canvas/Hero'), {
@@ -24,29 +23,27 @@ export default function Home2() {
         <Wrapper>
           <div className='mt-[80px] sm:mt-[120px]'>
             <motion.h1
-              variants={textVariant(1)}
+              variants={textVariant(0.6)}
               className={`${styles.heroHeadText} text-gray1`}
             >
               Hi, I am <span className='text-white/70'>Nafis</span>
             </motion.h1>
             <motion.p
-              variants={fadeIn("up", "spring", 1.5, 1)}
-              className={`${styles.heroSubText} mt-2 text-gray1-100 text-gray1`}
+              variants={fadeIn("up", "spring", 1, 1)}
+              className={`${styles.heroSubText} mt-2 text-gray1`}
             >
               I develop user interfaces for 👉🏼 <br className='sm:block hidden' />
               Web and Mobile applications
             </motion.p>
           </div>
-
         </Wrapper>
       </div>
 
       {/* 3D dragon */}
       <Hero lightColor={light} />
-          {/* Crafted with Next.js, Three.js, Tailwind CSS, and Framer Motion. */}
 
-      <div className="absolute bottom-10 md:bottom-16 z-10 right-0">
-        <div className="sm:px-16 px-6 flex space-x-2 md:space-x-3">
+      <div className="absolute bottom-20 z-10 right-0">
+        <div className="sm:px-16 px-6 flex space-x-3">
           {[
             { bg: "bg-[#656565]", size: "scale-[40%]", color: "#656565" },
             { bg: "bg-[#915eff]", size: "scale-[40%]", color: "#915eff" },
@@ -62,7 +59,6 @@ export default function Home2() {
           ))}
         </div>
       </div>
-
     </div>
   );
 }

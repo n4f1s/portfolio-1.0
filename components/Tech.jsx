@@ -10,7 +10,7 @@ import { DragIcons, technologies } from './DragIcons'
 
 const Tech = () => {
   return (
-    <Wrapper idName="Tech">
+    <Wrapper idName="Tech" className="mt-10">
       <motion.div variants={textVariant()} >
         <p className={styles.sectionSubText}>
           Skills

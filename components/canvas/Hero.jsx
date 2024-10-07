@@ -21,7 +21,6 @@ const Hero = ({ lightColor }) => {
                     minPolarAngle={Math.PI / 2}
                 />
                 <Scene lightColor={lightColor} />
-                <ambientLight intensity={0.015} />
             </Suspense>
 
             <Preload all />
@@ -32,7 +31,7 @@ const Hero = ({ lightColor }) => {
 
 
 function Scene({ lightColor }) {
-    const { nodes, materials } = useGLTF('/Home2/model.gltf');
+    const { nodes } = useGLTF('/Home2/model.gltf');
 
     return (
         <>
@@ -41,7 +40,6 @@ function Scene({ lightColor }) {
             <mesh
                 position={[0, -1.03, 0]}
                 geometry={nodes.dragon.geometry}
-                // material={materials['Default OBJ.001']}
                 dispose={null}
                 castShadow receiveShadow
             >

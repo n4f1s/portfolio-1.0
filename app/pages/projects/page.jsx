@@ -1,8 +1,16 @@
+import Projects from '@/components/Projects'
+import ProjectsHero from '@/components/ProjectsHero'
 import React from 'react'
 
 const page = () => {
   return (
-    <div>page</div>
+    <>
+      <div className="overflow-hidden">
+        <ProjectsHero />
+        
+        <Projects />
+      </div>
+    </>
   )
 }
 
