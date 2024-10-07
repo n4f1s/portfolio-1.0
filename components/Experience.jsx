@@ -9,8 +9,8 @@ const Experience = () => {
   const experiences = [
     {
       title: "React.js Developer",
-      company_name: "Starbucks",
-      icon: "/company/starbucks.png",
+      company_name: "wegro",
+      icon: "/company/wegro.png",
       iconBg: "bg-[#383E56]",
       date: "March 2020 - April 2021",
       points: [
@@ -23,7 +23,7 @@ const Experience = () => {
     {
       title: "React Native Developer",
       company_name: "Tesla",
-      icon: "/company/starbucks.png",
+      icon: "/company/wegro.png",
       iconBg: "bg-[#E6DEDD]",
       date: "Jan 2021 - Feb 2022",
       points: [
@@ -36,7 +36,7 @@ const Experience = () => {
     {
       title: "Web Developer",
       company_name: "Shopify",
-      icon: "/company/starbucks.png",
+      icon: "/company/wegro.png",
       iconBg: "bg-[#383E56]",
       date: "Jan 2022 - Jan 2023",
       points: [
@@ -49,7 +49,7 @@ const Experience = () => {
     {
       title: "Full stack Developer",
       company_name: "Meta",
-      icon: "/company/starbucks.png",
+      icon: "/company/wegro.png",
       iconBg: "bg-[#E6DEDD]",
       date: "Jan 2023 - Present",
       points: [
