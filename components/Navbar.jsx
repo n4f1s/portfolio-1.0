@@ -30,7 +30,6 @@ export const navLinks = [
 ];
 
 const Navbar = () => {
-  const [active, setActive] = useState("");
   const [toggle, setToggle] = useState(false);
 
   // If the Mobile Menu is active scroll disable, else scroll enable
@@ -148,8 +147,6 @@ const Navbar = () => {
               <MobileNav
                 toggle={toggle}
                 setToggle={setToggle}
-                active={active}
-                setActive={setActive}
               />
             }
           </AnimatePresence>

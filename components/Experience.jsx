@@ -8,61 +8,48 @@ import { styles } from '@/app/styles';
 const Experience = () => {
   const experiences = [
     {
-      title: "React.js Developer",
+      title: "Web Developer",
       company_name: "wegro",
       icon: "/company/wegro.png",
       iconBg: "bg-[#383E56]",
-      date: "March 2020 - April 2021",
+      date: "March 2024 - Present",
       points: [
-        "Developing and maintaining web applications using React.js and other related technologies.",
+        "Developing and maintaining web applications using Next.js and other related technologies.",
         "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
         "Implementing responsive design and ensuring cross-browser compatibility.",
         "Participating in code reviews and providing constructive feedback to other developers.",
       ],
     },
     {
-      title: "React Native Developer",
-      company_name: "Tesla",
-      icon: "/company/wegro.png",
+      title: "Front-end Developer",
+      company_name: "Funfuse Games",
+      icon: "/company/funfuse.png",
       iconBg: "bg-[#E6DEDD]",
-      date: "Jan 2021 - Feb 2022",
+      date: "Jan 2024 - March 2024",
       points: [
-        "Developing and maintaining web applications using React.js and other related technologies.",
-        "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
-        "Implementing responsive design and ensuring cross-browser compatibility.",
-        "Participating in code reviews and providing constructive feedback to other developers.",
+        "Customized WordPress theme according to a Figma design provided by the client.",
+        "Collaborated with the design and product teams to implement seamless functionality and ensure brand consistency.",
+        "Enhanced user experience by optimizing the theme for performance and responsiveness.",
+        "Delivered a fully functional website tailored to the company's specific needs."
       ],
     },
     {
-      title: "Web Developer",
-      company_name: "Shopify",
-      icon: "/company/wegro.png",
-      iconBg: "bg-[#383E56]",
-      date: "Jan 2022 - Jan 2023",
+      title: "Developer",
+      company_name: "Freelancer",
+      icon: "/company/freelancer.svg",
+      iconBg: "bg-white",
+      date: "Feb 2022 - Nov 2023",
       points: [
-        "Developing and maintaining web applications using React.js and other related technologies.",
-        "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
-        "Implementing responsive design and ensuring cross-browser compatibility.",
-        "Participating in code reviews and providing constructive feedback to other developers.",
-      ],
-    },
-    {
-      title: "Full stack Developer",
-      company_name: "Meta",
-      icon: "/company/wegro.png",
-      iconBg: "bg-[#E6DEDD]",
-      date: "Jan 2023 - Present",
-      points: [
-        "Developing and maintaining web applications using React.js and other related technologies.",
-        "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
-        "Implementing responsive design and ensuring cross-browser compatibility.",
-        "Participating in code reviews and providing constructive feedback to other developers.",
+        "Creating and maintaining applications using React.js, Next.js, React Native and WordPress.",
+        "Collaborating with clients to deliver custom web solutions tailored to their business needs.",
+        "Implementing responsive design for optimal performance on various devices and browsers.",
+        "Ensuring website scalability, SEO optimization, and delivering engaging user experiences."
       ],
     },
   ];
-  
 
-  const ExperienceCard = ({ experience, index }) => {
+
+  const ExperienceCard = ({ experience }) => {
     return (
       <div className="grid grid-cols-12 group">
         <div className='lg:block hidden col-span-3 px-4 mt-2'>
@@ -101,7 +88,7 @@ const Experience = () => {
                 className="size-[40px]"
               />
             </motion.div>
-              {/* Group hover gradiant backgroup */}
+            {/* Group hover gradiant backgroup */}
             <div className='absolute top-0 -left-20 green-pink-gradient group-hover:w-40 h-40 
             rounded-full blur-3xl' />
           </div>
@@ -133,12 +120,12 @@ const Experience = () => {
 
             <p className="mt-6 lg:hidden block">{experience.date}</p>
           </div>
-
+          {/* Arrow */}
           <div className="w-0 h-0 border-l-[6px] md:border-l-[12.5px] border-l-transparent 
             border-r-[6px] md:border-r-[12.5px] border-r-transparent border-b-[12.5px] 
-            md:border-b-[25px] border-b-[#9ca3af] absolute top-1 -rotate-90 -left-[25px]" 
+            md:border-b-[25px] border-b-[#9ca3af] absolute top-1 -rotate-90 -left-[14px] lg:-left-[25px]"
           />
-        
+
         </motion.div>
       </div>
     );
@@ -160,7 +147,7 @@ const Experience = () => {
         <div className='mt-20 space-y-10'>
 
           {experiences.map((experience, index) => (
-            <ExperienceCard key={index} experience={experience} index={index} />
+            <ExperienceCard key={index} experience={experience} />
           ))}
 
         </div>

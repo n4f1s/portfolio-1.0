@@ -4,7 +4,6 @@ import { Wrapper } from "@/hoc";
 import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import Button from "./Button";
-import { projectsData } from "./Projects";
 
 
 
@@ -62,32 +61,24 @@ const squareData = [
     },
     {
         id: 3,
-        src: "/projects/playboom.webp",
+        src: "/projects/fizzi.webp",
     },
     {
         id: 4,
         src: "/projects/virtualbank.webp",
     },
-    {
-        id: 5,
-        src: "/projects/aora.webp",
-    },
+    // {
+    //     id: 5,
+    //     src: "/projects/aora.webp",
+    // },
     {
         id: 6,
         src: "/projects/petopia.webp",
     },
-    // {
-    //     id: 7,
-    //     src: "/projects/funfuse.webp",
-    // },
-    // {
-    //     id: 8,
-    //     src: "/projects/funfuse.webp",
-    // },
-    // {
-    //     id: 9,
-    //     src: "/projects/funfuse.webp",
-    // },
+    {
+        id: 7,
+        src: "/projects/wegro.webp",
+    },
 ];
 
 const generateSquares = () => {

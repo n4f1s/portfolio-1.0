@@ -9,45 +9,37 @@ import FlipLink from './FlipLink';
 const MobileNav = ({ toggle, setToggle }) => {
     const url = usePathname();
     return (
-        <motion.div
+        <motion.button
             variants={mobileMenuSlide}
             initial="initial"
             animate="enter"
             exit="exit"
-            className="h-screen w-[70vw] bg-tertiary fixed right-0 top-0 
+            className="h-screen w-full bg-tertiary fixed right-0 top-0 
             text-white -z-10"
         >
             <div className="h-full py-[30%] px-[10%] flex flex-col justify-between">
                 <div className="flex flex-col gap-4 mt-20">
                     {
-                        navLinks.map((link, index) => {
-                            return (
-                                <motion.div
-                                    key={index}
-                                    initial={{ scale: 0, opacity: 0 }}
-                                    animate={{ scale: 1, opacity: 1 }}
-                                    transition={{
-                                        duration: 0.4,
-                                        delay: index * 0.2 + 0.5,
-                                        ease: "easeInOut",
-                                        type: "spring"
-                                    }}
-                                    exit={{ scale: 0, opacity: 0 }}
-                                >
-                                    <li
-                                        key={link.id}
-                                        className={`${url === link.id ? "text-white" : "text-secondary"} 
-                                        text-[18px] font-medium cursor-pointer`}
-                                    >
-                                        <FlipLink href={`${link.id}`} className="text-2xl">
-                                            {link.title}
-                                        </FlipLink>
-                                    </li>
-
-                                    <div className='w-full h-0.5 bg-white' />
-                                </motion.div>
-                            )
-                        })
+                        navLinks.map((link, index) => (
+                            <motion.a
+                                href={link.id}
+                                key={index}
+                                initial={{ scale: 0, opacity: 0 }}
+                                animate={{ scale: 1, opacity: 1 }}
+                                transition={{
+                                    duration: 0.3,
+                                    delay: index * 0.2 + 0.3,
+                                    ease: "easeInOut",
+                                    type: "spring"
+                                }}
+                                exit={{ scale: 0, opacity: 0 }}
+                                className={`${url === link.id ? "text-white" : "text-secondary"} 
+                                text-2xl font-medium my-2 text-left z-50 cursor-auto pointer-events-auto`}
+                            >
+                                {link.title}
+                                <div className='w-full h-0.5 bg-white' />
+                            </motion.a>
+                        ))
                     }
                 </div>
 
@@ -64,7 +56,7 @@ const MobileNav = ({ toggle, setToggle }) => {
                     </div>
                 </div>
             </div>
-        </motion.div>
+        </motion.button>
     )
 }
 

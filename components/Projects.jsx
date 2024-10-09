@@ -11,39 +11,89 @@ import Button from "./Button";
 export const projectsData = [
   {
     id: 1,
-    heading: "FunFuse",
-    subheading: "Learn what we do here",
-    img: "/projects/funfuse.webp",
-    href: "#",
+    heading: "Wegro",
+    subheading: "As a frontend developer, I translate Figma designs into responsive and dynamic websites using modern tools and frameworks.",
+    img: "/projects/wegro.webp",
+    href: "https://www.wegro.global/",
     tags: [
       {
-        name: "react",
+        name: "next.js",
         color: "blue-text-gradient",
       },
       {
-        name: "mongodb",
+        name: "typeScript",
+        color: "orange-text-gradient",
+      },
+      {
+        name: "framer motion",
+        color: "green-text-gradient",
+      },
+      {
+        name: "Tailwind",
+        color: "pink-text-gradient",
+      },
+    ]
+  },
+  {
+    id: 2,
+    heading: "FunFuse",
+    subheading: "Adapted and customized a WordPress theme for FunFuse, ensuring a seamless transition from Figma design to web.",
+    img: "/projects/funfuse.webp",
+    href: "https://funfusegames.com/",
+    tags: [
+      {
+        name: "wordpress",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "elementor",
+        color: "pink-text-gradient",
+      },
+    ],
+  },
+  {
+    id: 3,
+    heading: "Apple Clone",
+    subheading: "Developed an Apple iPhone clone as a learning project to enhance my coding skills.",
+    img: "/projects/appleclone.webp",
+    href: "https://apple-six-liard.vercel.app/",
+    tags: [
+      {
+        name: "react.js",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "three.js",
         color: "green-text-gradient",
       },
       {
         name: "tailwind",
         color: "pink-text-gradient",
       },
-    ],
+      {
+        name: "gsap",
+        color: "orange-text-gradient",
+      },
+    ]
   },
   {
-    id: 2,
-    heading: "Play Boom Games",
-    subheading: "Learn what we do here",
-    img: "/projects/PlayBoom.webp",
-    href: "https://playboom.netlify.app/",
+    id: 5,
+    heading: "Fizzi",
+    subheading: "Created the Fizzi website, utilizing Three.js, GSAP, and Next.js to enhance my skills and portfolio.",
+    img: "/projects/fizzi.webp",
+    href: "https://fizzi-green.vercel.app/",
     tags: [
       {
-        name: "react",
+        name: "next.js",
         color: "blue-text-gradient",
       },
       {
-        name: "mongodb",
+        name: "three.js",
         color: "green-text-gradient",
+      },
+      {
+        name: "gsap",
+        color: "orange-text-gradient",
       },
       {
         name: "tailwind",
@@ -52,18 +102,18 @@ export const projectsData = [
     ]
   },
   {
-    id: 3,
-    heading: "Apple Clone",
-    subheading: "Learn what we do here",
-    img: "/projects/appleclone.webp",
-    href: "#",
+    id: 6,
+    heading: "Petopia",
+    subheading: "Developed Petopia as one of my first projects, focusing on learning Firebase for backend and exploring eCommerce functionality.",
+    img: "/projects/petopia.webp",
+    href: "https://pet-shop-one-taupe.vercel.app/",
     tags: [
       {
-        name: "react",
+        name: "react.js",
         color: "blue-text-gradient",
       },
       {
-        name: "mongodb",
+        name: "firebase",
         color: "green-text-gradient",
       },
       {
@@ -75,121 +125,33 @@ export const projectsData = [
   {
     id: 4,
     heading: "Virtual Bank",
-    subheading: "Learn what we do here",
+    subheading: "Designed and implemented a virtual bank frontend as part of a personal learning initiative.",
     img: "/projects/virtualbank.webp",
-    href: "#",
+    href: "https://demo-virtual-bank.netlify.app/",
     tags: [
       {
-        name: "react",
+        name: "react.js",
         color: "blue-text-gradient",
       },
       {
-        name: "mongodb",
+        name: "material ui",
         color: "green-text-gradient",
-      },
-      {
-        name: "tailwind",
-        color: "pink-text-gradient",
-      },
-    ]
-  },
-  {
-    id: 5,
-    heading: "About",
-    subheading: "Learn what we do here",
-    img: "/projects/funfuse.webp",
-    href: "#",
-    tags: [
-      {
-        name: "react",
-        color: "blue-text-gradient",
-      },
-      {
-        name: "mongodb",
-        color: "green-text-gradient",
-      },
-      {
-        name: "tailwind",
-        color: "pink-text-gradient",
-      },
-    ]
-  },
-  {
-    id: 6,
-    heading: "About",
-    subheading: "Learn what we do here",
-    img: "/projects/funfuse.webp",
-    href: "#",
-    tags: [
-      {
-        name: "react",
-        color: "blue-text-gradient",
-      },
-      {
-        name: "mongodb",
-        color: "green-text-gradient",
-      },
-      {
-        name: "tailwind",
-        color: "pink-text-gradient",
       },
     ]
   },
   {
     id: 7,
-    heading: "About",
-    subheading: "Learn what we do here",
-    img: "/projects/petopia.webp",
-    href: "#",
-    tags: [
-      {
-        name: "react",
-        color: "blue-text-gradient",
-      },
-      {
-        name: "mongodb",
-        color: "green-text-gradient",
-      },
-      {
-        name: "tailwind",
-        color: "pink-text-gradient",
-      },
-    ]
-  },
-  {
-    id: 8,
-    heading: "About",
-    subheading: "Learn what we do here",
+    heading: "Aora",
+    subheading: "Built my first React Native mobile app, leveraging Appwrite as the backend solution.",
     img: "/projects/aora.webp",
     href: "#",
     tags: [
       {
-        name: "react",
+        name: "react native",
         color: "blue-text-gradient",
       },
       {
-        name: "mongodb",
-        color: "green-text-gradient",
-      },
-      {
-        name: "tailwind",
-        color: "pink-text-gradient",
-      },
-    ]
-  },
-  {
-    id: 9,
-    heading: "About",
-    subheading: "Learn what we do here",
-    img: "/projects/funfuse.webp",
-    href: "#",
-    tags: [
-      {
-        name: "react",
-        color: "blue-text-gradient",
-      },
-      {
-        name: "mongodb",
+        name: "appWrite",
         color: "green-text-gradient",
       },
       {
@@ -306,8 +268,8 @@ const Link = ({ heading, imgSrc, subheading, href, tags }) => {
             </motion.span>
           ))}
         </motion.span>
-        <span className="relative z-10 mt-2 block text-base text-neutral-500 
-        transition-colors duration-500 group-hover:text-neutral-50">
+        <span className="relative z-10 mt-4 block text-base text-neutral-500 
+        transition-colors duration-500 group-hover:text-neutral-50 max-w-[550px]">
           {subheading}
         </span>
 
@@ -334,7 +296,7 @@ const Link = ({ heading, imgSrc, subheading, href, tags }) => {
         }}
         transition={{ type: "spring" }}
         src={imgSrc}
-        className="absolute z-0 h-24 w-32 rounded-lg object-cover sm:h-auto sm:w-[300px] lg:w-[600px]"
+        className="absolute z-0 h-24 w-32 rounded-lg object-cover sm:h-auto sm:w-[300px] lg:w-[500px]"
         alt={`Image representing a link for ${heading}`}
       />
 
