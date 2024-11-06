@@ -44,7 +44,7 @@ export default function Home() {
   }, []);
 
 
-  let scrollThreshold = 300; 
+  let scrollThreshold = 200; 
   let scrollAmount = 0; 
   // Function to handle scroll attempt and navigate to the About page
   const handleScrollAttempt = (event) => {

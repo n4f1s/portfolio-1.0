@@ -91,14 +91,14 @@ const About = () => {
             </div>
 
             <div className="flex mt-8 items-center">
-              <a href="/">
+              <a href="/Web Developer.pdf" download="Musfiqur_Rahman_Nafis.pdf">
                 <Button>Download CV</Button>
               </a>
               <div className="flex items-center space-x-4 ml-6 sm:ml-0">
                 <div className="h-[1px] w-full bg-gray-500 mx-4 hidden sm:block" />
 
-                <a href="https://www.linkedin.com/in/musfiqur-rahman-8b8193265/" target="new" 
-                className="group relative">
+                <a href="https://www.linkedin.com/in/musfiqur-rahman-8b8193265/" target="new"
+                  className="group relative">
                   <img src="/linkedin.svg" alt="Linkedin" className="sm:size-20 size-10" />
 
                   <div className="absolute top-20 left-1/2 -translate-x-1/2 hidden group-hover:block 

@@ -27,7 +27,10 @@ const Footer = () => {
                             </p>
                         </Link>
 
-                        <Button className="my-6 ml-10">Download CV</Button>
+                        <a href="/Web Developer.pdf" download="Musfiqur_Rahman_Nafis.pdf">
+                            <Button className="my-6 ml-10">Download CV</Button>
+                        </a>
+                        
                     </div>
 
                     <div className='col-span-3 space-y-6'>

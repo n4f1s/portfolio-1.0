@@ -1,9 +1,8 @@
 import { motion } from 'framer-motion';
-import Link from 'next/link';
 import { navLinks } from './Navbar';
 import { mobileMenuSlide } from '@/utils/motion';
 import { usePathname } from 'next/navigation';
-import FlipLink from './FlipLink';
+
 
 
 const MobileNav = ({ toggle, setToggle }) => {
