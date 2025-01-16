@@ -3,7 +3,6 @@
 import { useState, useEffect } from 'react';
 import dynamic from "next/dynamic";
 import Navbar from '@/components/Navbar';
-import PageTwo from '@/components/PageTwo';
 import HeroLoader from '@/components/HeroLoader';
 import { useRouter } from 'next/navigation';
 import { Loader } from '@react-three/drei';
@@ -46,8 +45,8 @@ export default function Home() {
   }, []);
 
 
-  let scrollThreshold = 200; 
-  let scrollAmount = 0; 
+  let scrollThreshold = 200;
+  let scrollAmount = 0;
   // Function to handle scroll attempt and navigate to the About page
   const handleScrollAttempt = (event) => {
     // Check if user is scrolling down
@@ -70,14 +69,12 @@ export default function Home() {
       {loading ? <HeroLoader loadingTime={loadingTime} /> :
         <>
           <Navbar />
-          <PageTwo>
-            <div className="relative z-0 bg-primary">
-              <div className="w-full h-screen relative overflow-hidden">
-                <Hero2 />
-                <StarsCanvas />
-              </div>
+          <div className="relative z-0 bg-primary">
+            <div className="w-full h-screen relative overflow-hidden">
+              <Hero2 />
+              <StarsCanvas />
             </div>
-          </PageTwo>
+          </div>
         </>
       }
     </>

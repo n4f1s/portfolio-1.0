@@ -62,7 +62,7 @@ const Navbar = () => {
 
   return (
     <motion.nav
-      className={`${styles.paddingX} w-full flex items-center py-2 fixed top-0 z-40 
+      className={`${styles.paddingX} w-full flex items-center py-5 fixed top-0 z-40 
       ${!navBg ? "bg-transparent" : "bg-slate-800/50 backdrop-blur-sm"}`}
       variants={{
         visible: { y: 0 },
@@ -81,7 +81,7 @@ const Navbar = () => {
             alt='Logo'
             width={64}
             height={64}
-            className='object-contain'
+            priority
           />
           <p className='text-white text-[18px] font-bold cursor-pointer flex'>
             Nafis &nbsp; <span className='sm:block hidden'>| Developer</span>

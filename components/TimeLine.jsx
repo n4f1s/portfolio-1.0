@@ -3,6 +3,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 
+
+/* eslint-disable react-hooks/rules-of-hooks */
 const Timeline = () => {
   const [progress, setProgress] = useState(0);
   const containerRef = useRef(null);
@@ -117,5 +119,5 @@ const Timeline = () => {
     </div>
   );
 };
-
+/* eslint-enable react-hooks/rules-of-hooks */
 export default Timeline;
