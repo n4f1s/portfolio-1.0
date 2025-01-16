@@ -115,7 +115,8 @@ const ShuffleGrid = () => {
     };
 
     return (
-        <div className="grid grid-cols-2 grid-rows-3 h-[450px] gap-1">
+        <div className="grid grid-cols-1 sm:grid-cols-2 grid-rows-3 h-[450px] 
+        content-center gap-6 sm:gap-1">
             {squares.slice(0, 9).map((sq) => sq)}
         </div>
     );

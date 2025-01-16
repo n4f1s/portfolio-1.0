@@ -1,6 +1,7 @@
 'use client'
 
-import { motion } from 'framer-motion';
+import React, { useEffect, useRef, useState } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { Wrapper } from '@/hoc';
 import { textVariant } from '@/utils/motion';
 import { styles } from '@/app/styles';
@@ -130,7 +131,25 @@ const Experience = () => {
       </div>
     );
   };
+  const [progress, setProgress] = useState(0);
+  const containerRef = useRef(null);
 
+
+  // Track scroll progress within the container
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start center", "end center"], // Timeline animates as it scrolls fully into view
+  });
+
+  // Dynamically adjust the progress bar height
+  const barHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
+
+  useEffect(() => {
+    const unsubscribe = scrollYProgress.on("change", (value) => {
+      setProgress(value); // Track the current scroll position
+    });
+    return () => unsubscribe();
+  }, [scrollYProgress]);
 
   return (
     <>
@@ -145,13 +164,138 @@ const Experience = () => {
         </motion.div>
 
         <div className='mt-20 space-y-10'>
+          <div
+            ref={containerRef}
+            className="relative overflow-hidden"
+          >
+            {/* Center vertical scroll bar */}
+            <motion.div
+              className="absolute left-[36px] lg:left-1/3 top-0 w-1 h-screen bg-tertiary"
+              style={{ height: "100%", transform: "translateX(-50%)" }}
+            >
+              <motion.div
+                className="absolute left-0 w-full bg-white"
+                style={{ height: barHeight }}
+              />
+            </motion.div>
 
-          {experiences.map((experience, index) => (
-            <ExperienceCard key={index} experience={experience} />
-          ))}
+            {/* Timeline content */}
+            <div className="mx-auto">
+              {experiences.map((item, index) => {
+                // Timeline item progress calculations
+                const totalItems = experiences.length;
+                const itemStart = index / totalItems;
+                const itemMid = itemStart + (1 / totalItems) * 0.3;
+                const itemEnd = (index + 1) / totalItems;
 
+                // Visibility control using `useTransform`
+                const isVisible = useTransform(
+                  scrollYProgress,
+                  [itemStart + 0.03, itemMid, itemEnd + 0.25],
+                  [0, 1, 0]
+                );
+
+                // Debounced visibility toggle
+                const [visible, setVisible] = useState(false);
+                useEffect(() => {
+                  let timeout
+
+                  const handleVisibility = (value) => {
+                    clearTimeout(timeout);
+                    timeout = setTimeout(() => setVisible(value > 0.5), 50);
+                  };
+
+                  const unsubscribe = isVisible.on("change", handleVisibility);
+                  return () => {
+                    unsubscribe();
+                    clearTimeout(timeout);
+                  };
+                }, [isVisible]);
+
+                // Animations and style transformations
+                const translateY = useTransform(
+                  scrollYProgress, [itemStart, itemEnd], [50, 0]
+                );
+                const textColor = useTransform(
+                  scrollYProgress, [itemStart, itemMid], ["#4F4F4F", "#FFFF"]
+                );
+
+                return (
+                  <motion.div
+                    key={index}
+                    className="flex items-start gap-6 my-32 w-full lg:h-[300px]"
+                    style={{ color: textColor, y: translateY }}
+                  >
+                    {/* Left Section: Year and Image */}
+                    <div className="lg:w-1/3 relative">
+                      <div className="lg:block hidden">
+                        {/* Render Text only when visible */}
+                        {visible && (
+                        <div className="mr-8 z-10">
+                        <p className="text-2xl font-medium text-right z-10 text-white">
+                          {item.date}
+                        </p>
+                        </div>
+                      )}
+                      </div>
+                    </div>
+
+                    {/* Timeline Marker */}
+                    <div className="relative w-[40px] h-auto">
+                      {/* <motion.div
+                        className="size-6 rounded-full relative z-10"
+                        style={{
+                          backgroundColor: circleColor,
+                        }}
+                      /> */}
+                      <motion.div
+                        className={`absolute -right-3 lg:right-[45px] lg:-left-[45px] z-10 flex items-center justify-center`}>
+                        {/* <img
+                          src={item.icon}
+                          alt={item.company_name}
+                          className="w-[40px] flex shrink-0"
+                        /> */}
+                        <motion.img
+                          initial={{ scale: 0.5 }}
+                          animate={{ scale: visible ? 1 : 0.5 }}
+                          src={item.icon}
+                          alt={item.company_name}
+                          className="w-[40px] flex shrink-0"
+                        />
+                      </motion.div>
+                      <div className="absolute -top-8 -left-[45px] size-[80px] lg:size-[100px] rounded-full bg-primary z-0" />
+                    </div>
+
+                    {/* Right Section: Title and Text */}
+                    <div className="lg:w-1/2 z-10">
+                      <div className="inline-block -mt-[6px]">
+                        <div className="w-full h-full bg-tertiary px-4 py-6">
+                          <h3 className="text-[24px] font-bold -mt-3">
+                            {item.title}
+                          </h3>
+                          <p className="text-secondary text-[16px] font-semibold lg:hidden">
+                            {item.company_name}
+                          </p>
+
+                          <ul className="mt-5 list-disc ml-5 space-y-2">
+                            {item.points.map((point, index) => (
+                              <li key={`item-point-${index}`} className="text-[14px] pl-1 
+                                tracking-wider">
+                                {point}
+                              </li>
+                            ))}
+                          </ul>
+
+                          <p className="mt-6 lg:hidden block">{item.date}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </div>
+          </div>
         </div>
-
       </Wrapper>
     </>
   )

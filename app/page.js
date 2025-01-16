@@ -6,10 +6,12 @@ import Navbar from '@/components/Navbar';
 import PageTwo from '@/components/PageTwo';
 import HeroLoader from '@/components/HeroLoader';
 import { useRouter } from 'next/navigation';
+import { Loader } from '@react-three/drei';
 
 
 const Hero2 = dynamic(() => import('@/components/Hero2'), {
-  ssr: false
+  ssr: false,
+  loading: () => <Loader />
 });
 const StarsCanvas = dynamic(() => import('@/components/canvas/Stars'), {
   ssr: false
@@ -69,7 +71,6 @@ export default function Home() {
         <>
           <Navbar />
           <PageTwo>
-
             <div className="relative z-0 bg-primary">
               <div className="w-full h-screen relative overflow-hidden">
                 <Hero2 />
