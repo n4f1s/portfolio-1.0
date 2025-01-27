@@ -10,7 +10,7 @@ const HeroLoader = () => {
     const words = text.split(" ");
 
     return (
-        <div className="flex flex-col w-full h-screen items-center justify-center">
+        <div className="flex flex-col w-full h-screen items-center justify-center ">
             <motion.div
                 className={`${styles.sectionHeadText} text-center pt-6 mx-10 overflow-hidden max-w-screen-2xl`}
             >
