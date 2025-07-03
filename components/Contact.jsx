@@ -54,7 +54,7 @@ const Contact = () => {
     setLoading(true);
 
     emailjs.send(
-      'service_v0y38tp',
+      'service_woocuv9',
       'template_w7hda1r',
       {
         form_name: form.name,
