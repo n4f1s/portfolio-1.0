@@ -56,7 +56,7 @@ export const projectsData = [
     heading: "Apple Clone",
     subheading: "Developed an Apple iPhone clone as a learning project to enhance my coding skills.",
     img: "/projects/appleclone.webp",
-    href: "https://apple-six-liard.vercel.app/",
+    href: "https://apple.musfiqur.com/",
     tags: [
       {
         name: "react.js",
@@ -81,7 +81,7 @@ export const projectsData = [
     heading: "Fizzi",
     subheading: "Created the Fizzi website, utilizing Three.js, GSAP, and Next.js to enhance my skills and portfolio.",
     img: "/projects/fizzi.webp",
-    href: "https://fizzi-green.vercel.app/",
+    href: "https://fizzi.musfiqur.com/",
     tags: [
       {
         name: "next.js",
@@ -106,7 +106,7 @@ export const projectsData = [
     heading: "Petopia",
     subheading: "Developed Petopia as one of my first projects, focusing on learning Firebase for backend and exploring eCommerce functionality.",
     img: "/projects/petopia.webp",
-    href: "https://pet-shop-one-taupe.vercel.app/",
+    href: "https://petopia.musfiqur.com/",
     tags: [
       {
         name: "react.js",
